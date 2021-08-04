@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <testClassName>cqrs_AuthenticationCommandTest</testClassName>
+    <testClassName>cqrs_CommandDispatcherTest</testClassName>
+    <testClassName>cqrs_CommandHandlerTest</testClassName>
+    <testClassName>cqrs_HandlerResolverBaseTest</testClassName>
+    <testClassName>cqrs_QueryDispatcherTest</testClassName>
+    <testClassName>cqrs_QueryHandlerTest</testClassName>
+    <testClassName>cqrs_ResolverTest</testClassName>
+    <testClassName>cqrs_ResultTest</testClassName>
+</ApexTestSuite>

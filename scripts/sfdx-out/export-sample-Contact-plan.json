@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Contact",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-sample-Contacts.json"
+        ]
+    }
+]
