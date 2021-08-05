@@ -21,9 +21,10 @@ etc.). Above, is a collection of commands, creates a Command Dispatcher, passes 
 collection, and the dispatcher finds the appropriate handlers and executes.
 
 ```` 
+// list of commands to run (default behavior is to exits on bad status on any command)
 List<cqrs_ICommand> commands = new List<cqrs_ICommand> {
-new cqrs_AuthenticationCommand('test-uid','test-password'),
-new cqrs_WriteResultCommand('test-id')
+    new cqrs_AuthenticationCommand('test-uid','test-password'),
+    new cqrs_WriteResultCommand('test-id')
 };
 cqrs_ICommandResult result= new cqrs_CommandDispatcher().dispatch(commands);
 System.debug('++++++++++++++++RESULTs++++++++++++++++++++++++++++');
@@ -44,7 +45,7 @@ List<cqrs_IQuery> queries = new List<cqrs_IQuery> {
    new cqrs_GetAccountByTypeQuery('Enterprise')
 };
 Integer inx=1;
-// act
+// act -- dispatcher looks up a handler and executes
 cqrs_IQueryResult result= new cqrs_QueryDispatcher().dispatch(queries);
 //
 // results
@@ -74,20 +75,26 @@ of services relevant to Customer Service.
 
 ```` 
 //
-// Call a Service directly
+// Call a Service directly -- service wraps Command and Query Behavior
 //
 Integer inx=1;
+// The Service Name -- Note, it looks for the service based on name and running environment
+// If run from anonymous window ( that is considered "Debug" mode
+//
 String serviceName='Customer Service';
+// our account type parameter
 String accountType = 'enterprise';
-// get the service by name
+//
+// get the service by name -- resolver looks for service by name and runtime environment ( this can be overloaded)
 cqrs_CustomerService service = (cqrs_CustomerService) cqrs_ServiceProvider.newInstance().getService( serviceName);
+//
 // show some service information
 System.debug('++++++++++++++++RESULTs++++++++++++++++++++++++++++');
 System.debug('Service Name:' + service.name());
 System.debug('Service Guid:' + service.guid());
 System.debug('++++++++++++++++RECORDs++++++++++++++++++++++++++++');
 //
-// iterate over the results
+// iterate over the results (DTO)
 //
 for ( cqrs_AccountTypeRecordsDTO dto: service.findAccountRecordsByAccountType(accountType)) {
   System.debug('Service Result (' + inx++ + ') Name=' + dto.name);
