@@ -21,6 +21,11 @@
                 <default>false</default>
                 <label>Query</label>
             </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
