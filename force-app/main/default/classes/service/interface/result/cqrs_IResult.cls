@@ -29,20 +29,21 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Entiy Information
+ * @description       : CQRS Result (For Commands, violate the C part of the pattern ... but ... )
  * @author            : Bill Anderson
- * @group             :Interface
- * @last modified on  : 08-03-2021
+ * @group             : Interface
+ * @last modified on  : 08-05-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-30-2021   Bill Anderson   Initial Version
  **/
-public interface cqrs_IEntityIdentifier {
-    // guid
-    String guid();
-    // class name
-    String name();
-    // component/class type
-    Type componentType();
-}
+public interface cqrs_IResult {
+    // success query/command
+    Boolean success();
+    // exception query/command
+    Exception theException();
+    // syntactic sugar for exception check
+    Boolean hasException();
+
+}// end of cqrs_IResult

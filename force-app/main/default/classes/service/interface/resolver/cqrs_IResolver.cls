@@ -29,10 +29,11 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Resolver Interface
+ * @description       : Resolver Interface 
+ *                      Candidate for Refactoring!
  * @author            : Bill Anderson
  * @group             : Interface
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-05-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -65,7 +66,8 @@ public interface cqrs_IResolver {
      */
     List<cqrs_IQuery> getQueryChain(String label);
     /**
-     * @description get Service by name
+     * @description get Service by name (could extend this interface TBD)
+       (best to segregate out TBD ... "cqrs_IServiceProvider")
      * @param  name service name
      * @return cqrs_IService
      */ 
