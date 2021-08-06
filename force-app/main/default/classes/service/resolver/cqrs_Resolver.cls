@@ -30,9 +30,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
  * @description       : responsible for resolving Handlers,COmmands and Queries Types
+ *                      This has a lot of improvements that can be done
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-06-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -44,7 +45,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     // Data Members
     /////////////////////////////////////////////////////////////////
     /*
-     * Data Representation
+     * Data Representation ( we need to sort on "Order")
      */
     public class CQRS_ContainerDomain implements Comparable {
         public String label;
@@ -55,7 +56,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
         public String requestType;
         public Integer order;
         public Boolean active;
-
+        // support sorting
         public Integer compareTo(Object compareTo)
         {
             CQRS_ContainerDomain cqrs = (CQRS_ContainerDomain) compareTo;
@@ -80,10 +81,10 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     private static final String COMMAND_TYPE         = CommandRequestTypeEnum.COMMAND.name();
     private static final string QUERY_TYPE           = CommandRequestTypeEnum.QUERY.name();
 
-    // holds the rule aliases
+    // holds the commands, queries and service
     private static util_MetadataReader cqrsMDT = null;
     //
-    // This is a quick hack can be don better!!
+    // This is a quick hack can be done better!!
     //
     // our records by category ( query/commands)
     private static final Map<String, List<CQRS_ContainerDomain> > COMMAND_RECORDS_BY_CATEGORY = new  Map<String, List<CQRS_ContainerDomain> >();
@@ -269,6 +270,29 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     // Protected Methods
     /////////////////////////////////////////////////////////////////
     /**
+     * @description getType
+     * @param  concreteType concrete type name
+     * @return Type
+     */
+    @TestVisible
+    protected virtual Object getType(String concreteType) {
+        Type value=null;
+        Object result=null;
+        try {
+            value = Type.forName(concreteType);
+
+            if ( value  != null) {
+                result= value.newInstance();
+            } else {
+                this.log('Exception: Invalid Type of ' + concreteType);
+            }
+        } catch (Exception excp) {
+            this.log('Exception: Invalid Conversion of ' + concreteType);
+            this.log('Exception: ' + excp.getMessage());
+        }
+        return result;
+    }// end of getType
+    /**
      * @description log -- substitute your Logger here!
      * @param  message String
      */
@@ -278,6 +302,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
             system.debug(message);
         }
     }  // end of log
+
     /////////////////////////////////////////////////////////////////
     // Private Methods
     /////////////////////////////////////////////////////////////////
@@ -288,7 +313,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     private void initialize() {
         // only once instance of the global context
         if ( cqrs_Resolver.cqrsMDT== null ) {
-            // update aliases
+            // update cqrs
             this.updateCQRSRecords( this.instantiateReader());
         }
     }  // end of initialize
@@ -381,38 +406,21 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
         return cqrsList;
     }  // end of getListByRequestType
 
-    /**
-     * @description getType
-     * @param  concreteType concrete type name
-     * @return Type
-     */
-    @TestVisible
-    private Object getType(String concreteType) {
-        Type value=null;
-        Object result=null;
-        try {
-            value = Type.forName(concreteType);
 
-            if ( value  != null) {
-                result= value.newInstance();
-            } else {
-                this.log('Exception: Invalid Type of ' + concreteType);
-            }
-        } catch (Exception excp) {
-            this.log('Exception: Invalid Conversion of ' + concreteType);
-            this.log('Exception: ' + excp.getMessage());
-        }
-        return result;
-    }
     /**
      * @description get alias Metadata description
      * @return   util_MetadataReader
      */
     @TestVisible
     private util_MetadataReader instantiateReader() {
+        // singleton MDT
         if (cqrs_Resolver.cqrsMDT==null ) {
             cqrs_Resolver.cqrsMDT= new util_MetadataReader( Commands_and_Queries__mdt.class,
+                                                            // how we organize the metadata
                                                             util_MetadataReader.DEVELOPER_NAME_KEY,
+                                                            // runtime environment ( we get ALL of them)
+                                                            // note, this could be done to get the current
+                                                            // runtime environment (see "util_MiscHelpers.getEnvironment()" )
                                                             util_Constants.ALL_CATEGORY);
         }
         return cqrs_Resolver.cqrsMDT;
