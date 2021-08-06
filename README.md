@@ -7,7 +7,7 @@ Documentation can be found in the _docs_ directory and [CQRS](https://github.com
 ## Caveat-Preemptor
 
 The sample code is just that. There is room for much improvement and robustness. The Unit
-Tests are enough to provide at least 75% code coverage. If one decides to use the code, it is ASIS.
+Tests are enough to provide at least 75% code coverage. If one decides to use the code, it is AS-IS.
 Finally, the code was prefixed with either cqrs_ or util_ to avoid name collision. The packaging
 does not use a namespace but was tested and can be packaged as a 2GP unlocked package.
 
@@ -116,11 +116,13 @@ Download the directory. Assuming you have :
 
 you can install this offering by running the following script from the source root directory:
 
-./scripts/inint/install.sh -v <YOU-DEV-HUB> -l <#-of-days-the-Scratch-Org-Is-Active>
+**./scripts/inint/install.sh -v** _YOU-DEV-HUB_ **-l** _<#-of-days-the-Scratch-Org-Is-Active>_
 
 for example:
 
-./scripts/inint/install.sh -v MyDevHub -l 5
+**./scripts/inint/install.sh -v MyDevHub -l 5**
+
+__Note, some work was done on a Windows (git-bash), script may have carriage-control, line-feed causing issues in a Unix (Mac) environment__
 
 ##  Working with Source
 
