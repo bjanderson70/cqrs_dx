@@ -32,7 +32,7 @@
  * @description       : Query Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -48,6 +48,7 @@ public abstract inherited sharing class cqrs_QueryHandler implements cqrs_IQuery
     // IValidation validation=null;
     // IMapperEngine mapper=null;
     // IPerformance cmdPerf = null;
+    // ICache cache = null;
 
     /////////////////////////////////////////////////////////////
     // Ctors
@@ -67,6 +68,7 @@ public abstract inherited sharing class cqrs_QueryHandler implements cqrs_IQuery
     //     //     this.validation = validator;
     //     //     this.mapper = mapEngine;
     //     //     this.cmdPerf = perf;
+    //     //     this.cache = some-cache interface
 
     // }
     public cqrs_IQueryResult retrieve(cqrs_IQuery query){

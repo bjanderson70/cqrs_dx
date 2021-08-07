@@ -32,7 +32,7 @@
  * @description       : Command Dispatcher
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -64,6 +64,7 @@ public virtual inherited sharing class cqrs_CommandDispatcher implements cqrs_IC
     /////////////////////////////////////////////////////////
     // Public Methods
     /////////////////////////////////////////////////////////
+
     /**
      * @description dispatch command via handler
      * @param  command cqrs_ICommand to process
@@ -81,6 +82,7 @@ public virtual inherited sharing class cqrs_CommandDispatcher implements cqrs_IC
         return result;
 
     }// end of dispatch
+
     /**
      * @description dispatch command via handler
      * @param  command List<cqrs_ICommand> to process
@@ -92,6 +94,8 @@ public virtual inherited sharing class cqrs_CommandDispatcher implements cqrs_IC
         try {
             List<cqrs_ICommandHandler> ourCommandHandlers = this.getHandlers(commands);
             integer index=0;
+            // iterate over the commands --
+            // This could be done better -- TBD
             for ( cqrs_ICommandHandler handler : ourCommandHandlers ) {
                 // execute the command
                 result= handler.execute(commands[index++]);
@@ -103,16 +107,18 @@ public virtual inherited sharing class cqrs_CommandDispatcher implements cqrs_IC
         } catch(Exception excp) {
             result = new cqrs_CommandResult(excp);
         }
-        return result;
+        // empty  commands , result could be null
+        return result==null ? new cqrs_CommandResult() : result;
 
     } // end of dispatch
+
     /////////////////////////////////////////////////////////
     // Protected Methods
     /////////////////////////////////////////////////////////
     /**
      * @description get command Handlers
      * @param  commands List<cqrs_ICommand>
-     * @return eturn description
+     * @return List<cqrs_ICommandHandler>
      */
     @TestVisible
     protected virtual List<cqrs_ICommandHandler> getHandlers(List<cqrs_ICommand> commands) {

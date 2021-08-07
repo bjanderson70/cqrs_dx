@@ -32,7 +32,7 @@
  * @description       : Base Class for Query and Command Context
  * @author            : Bill Anderson
  * @group             : Core
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -58,7 +58,7 @@ public abstract inherited sharing class cqrs_BaseQueryAndCommandContext implemen
     util_IUserContext theUserContext;
 
     ////////////////////////////////////////////////////////////////////
-    // Ctors
+    // Ctors [Protected]
     ////////////////////////////////////////////////////////////////////
 
     /**
@@ -159,6 +159,6 @@ public abstract inherited sharing class cqrs_BaseQueryAndCommandContext implemen
     protected void environment(String env) {
         this.theEnvironment=util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug(env);
     }
-   
+
 
 }// end of cqrs_BaseQueryAndCommandContext

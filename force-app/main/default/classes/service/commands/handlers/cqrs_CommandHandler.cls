@@ -32,7 +32,7 @@
  * @description       : Command handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -48,6 +48,7 @@ public abstract inherited sharing class cqrs_CommandHandler implements cqrs_ICom
     //     :
     //     :
     // IUnitOfWork uow=null;
+    // ICache cache=null;
     // IValidation validation=null;
     // IMapperEngine mapper=null;
     // IPerformance cmdPerf = null;
@@ -107,7 +108,7 @@ public abstract inherited sharing class cqrs_CommandHandler implements cqrs_ICom
     /////////////////////////////////////////////////////////////
 
     /**
-     * @description This would be you Cross Cutting Concern Logger
+     * @description This is contrived -- you should have your own Cross Cutting Concern Logger
      *      here we did this for syntactic sugar ( for the children)
      * @param  message String
      */
@@ -118,5 +119,6 @@ public abstract inherited sharing class cqrs_CommandHandler implements cqrs_ICom
             system.debug('+++' +message);
         }
         return add;
-    }
+    }// end of log
+
 }// end of cqrs_CommandHandler

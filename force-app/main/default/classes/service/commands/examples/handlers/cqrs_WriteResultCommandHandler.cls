@@ -31,8 +31,8 @@
  *
  * @description       : Write Command -silly example
  * @author            : Bill Anderson
- * @group             : Handler
- * @last modified on  : 08-03-2021
+ * @group             : Sample
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -61,7 +61,7 @@ public virtual inherited sharing class cqrs_WriteResultCommandHandler extends cq
             // Do whatever processing is needed. Take the data from this command
             // and process it accordingly. This is where you would take the Domain
             // data and use it either to perform some task or update/insert into
-            // a Sink. The base handler would have a validator, mapper, unit-of-work etc.
+            // a Sink. The base handler would have a validator, mapper, cache, unit-of-work etc.
             //
             result = new cqrs_CommandResult();
         } catch (Exception excp) {

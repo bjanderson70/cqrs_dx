@@ -31,8 +31,8 @@
  *
  * @description       : Get Account By Type Query Handler
  * @author            : Bill Anderson
- * @group             : Handler
- * @last modified on  : 08-03-2021
+ * @group             : Sample
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -59,6 +59,8 @@ public virtual inherited sharing class cqrs_GetAccountByTypeQueryHandler extends
 
             // Here is where we may check the following:
             /*
+                 (a) Cache -- using the base class functionality
+
                  (1) permissions
                  (2) validation of the input (namely, "theUserAccountType")
                  (3) Using a Repository/Selector (i.e. Account) to extract the data

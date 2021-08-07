@@ -32,7 +32,7 @@
  * @description       : Base Resolve Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -43,6 +43,12 @@ public virtual inherited sharing class cqrs_HandlerResolverBase {
     //////////////////////////////////////////////////////////////////
     // Data Members
     //////////////////////////////////////////////////////////////////
+    //-- HACK !!!
+    // we do not need to do this way, as the handler ALREADY exists
+    // in the metadata ... I only did it this way to FORCE one to
+    // name their handlers with this extension. However, it could
+    // still be enforce by comparing the name + "Hander" w/ the metadata
+    // handlere value
     public static final String EXPECTED_HANDLER_EXTENSION = 'Handler';
     // our resolver
     private static cqrs_IResolver theResolver = null;

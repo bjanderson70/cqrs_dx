@@ -29,11 +29,11 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : responsible for resolving Handlers,COmmands and Queries Types
- *                      This has a lot of improvements that can be done
+ * @description       : Responsible for resolving Handlers,COmmands and Queries Types
+ *                      This needs a lot of improvements!!
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-06-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -93,6 +93,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     // segregated query and commands handlers
     private static final Map<String, cqrs_ICommandHandler > COMMAND_HANDLER_RECORDS = new  Map<String, cqrs_ICommandHandler> ();
     private static final Map<String, cqrs_IQueryHandler> QRY_HANDLER_RECORDS = new  Map<String, cqrs_IQueryHandler> ();
+    // service records
     private static final Map<String, cqrs_IService> SERVICE_RECORDS = new  Map<String, cqrs_IService> ();
 
     // our instance

@@ -32,7 +32,7 @@
  * @description       : Query Dispatcher
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -88,15 +88,15 @@ public virtual inherited sharing class cqrs_QueryDispatcher implements cqrs_IQue
      * @param  command List<cqrs_IQuery> to process
      * @return cqrs_IQueryResult
      */
-    public virtual cqrs_IQueryResult dispatch(List<cqrs_IQuery> querys) {
+    public virtual cqrs_IQueryResult dispatch(List<cqrs_IQuery> queries) {
         cqrs_IQueryResult result=null;
 
         try {
-            List<cqrs_IQueryHandler> ourQueryHandlers = this.getHandlers(querys);
+            List<cqrs_IQueryHandler> ourQueryHandlers = this.getHandlers(queries);
             integer index=0;
             for ( cqrs_IQueryHandler handler : ourQueryHandlers ) {
                 // execute the Query
-                result= handler.retrieve(querys[index++]);
+                result= handler.retrieve(queries[index++]);
                 if ( false == result.success() ) {
                     break;
                 }
@@ -104,7 +104,8 @@ public virtual inherited sharing class cqrs_QueryDispatcher implements cqrs_IQue
         } catch(Exception excp) {
             result = new cqrs_QueryResult(excp);
         }
-        return result;
+        // protected against empty queries
+        return result==null ? new cqrs_QueryResult(): result;
 
     } // end of dispatch
     /////////////////////////////////////////////////////////

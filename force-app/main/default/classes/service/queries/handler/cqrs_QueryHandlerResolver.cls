@@ -32,7 +32,7 @@
  * @description       : Resolver for Query Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -50,9 +50,8 @@ public inherited sharing class cqrs_QueryHandlerResolver extends cqrs_HandlerRes
      * @return cqrs_IQueryHandler
      */
     public cqrs_IQueryHandler resolve(cqrs_IQuery query) {
-        cqrs_IQueryHandler result=(cqrs_IQueryHandler) super.resolve(query.name(),
-                                                                     cqrs_Resolver.CommandRequestTypeEnum.QUERY);
+        return (cqrs_IQueryHandler) super.resolve(query.name(),
+                                                  cqrs_Resolver.CommandRequestTypeEnum.QUERY);
 
-        return result;
     }  // end of resolve
 }// end of cqrs_QueryHandlerResolver

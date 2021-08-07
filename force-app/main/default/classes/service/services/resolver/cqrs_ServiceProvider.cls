@@ -29,10 +29,10 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       :
+ * @description       : Service Provider
  * @author            : Bill Anderson
- * @group             :
- * @last modified on  : 08-03-2021
+ * @group             : Service
+ * @last modified on  : 08-07-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -43,7 +43,7 @@ public virtual inherited sharing class cqrs_ServiceProvider extends cqrs_Handler
     /////////////////////////////////////////////////////////
     // Dat Members
     /////////////////////////////////////////////////////////
-
+    // singleton
     private static cqrs_ServiceProvider INSTANCE=null;
     /////////////////////////////////////////////////////////
     // Public Methods
@@ -62,8 +62,8 @@ public virtual inherited sharing class cqrs_ServiceProvider extends cqrs_Handler
 
     /* Then Call
 
-     cqrs_IService cqrs_ServiceProvider.newInstance().getService(String service)
-    
+       cqrs_IService cqrs_ServiceProvider.newInstance().getService(String service)
+
      */
 
 }// end of cqrs_ServiceProvider
