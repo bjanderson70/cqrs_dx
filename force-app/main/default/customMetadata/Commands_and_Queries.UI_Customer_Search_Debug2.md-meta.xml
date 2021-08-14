@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Environment__c</field>
-        <value xsi:type="xsd:string">Test</value>
+        <value xsi:type="xsd:string">Debug</value>
     </values>
     <values>
         <field>Handler_Type__c</field>

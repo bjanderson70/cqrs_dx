@@ -32,7 +32,7 @@
  * @description       : Authenticate Command
  * @author            : Bill Anderson
  * @group             : Sample-Commands
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -51,6 +51,14 @@ public virtual inherited sharing class cqrs_AuthenticationCommand extends cqrs_B
     //////////////////////////////////////////////////////
     // Ctors
     //////////////////////////////////////////////////////
+    /**
+     * @description cqrs_AuthenticationCommand (default ctor)
+     */
+    public cqrs_AuthenticationCommand( ) {
+        super();
+        this.userId(null);
+        this.password(null);
+    }
     /**
      * @description cqrs_AuthenticationCommand
      * @param  userName String

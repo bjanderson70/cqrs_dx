@@ -33,7 +33,7 @@
  *                      This needs a lot of improvements!!
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -71,10 +71,12 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
         COMMAND,
         SERVICE
     }
+    /*******************************Private **********************************/
+
     // names are CASE-sensitive
     private static final String CONCRETE_TYPE        ='concrete_type__c';
     private static final String ACTIVE_TYPE          ='active__c';
-    private static final String HANDLER_TYPE         ='handler_Type__c';
+    private static final String HANDLER_TYPE         ='handler_type__c';
     private static final String ENVIRONMENT_FIELD    ='environment__c';
     private static final String ORDER_FIELD          ='order__c';
     private static final String REQUEST_FIELD        ='requesttype__c';
@@ -91,10 +93,16 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     private static final Map<String, List<CQRS_ContainerDomain> > QRY_RECORDS_BY_CATEGORY = new  Map<String, List<CQRS_ContainerDomain> >();
     private static final Map<String, List<CQRS_ContainerDomain> > SERVICE_RECORDS_BY_CATEGORY = new  Map<String, List<CQRS_ContainerDomain> >();
     // segregated query and commands handlers
+    @TestVisible
     private static final Map<String, cqrs_ICommandHandler > COMMAND_HANDLER_RECORDS = new  Map<String, cqrs_ICommandHandler> ();
+    @TestVisible
     private static final Map<String, cqrs_IQueryHandler> QRY_HANDLER_RECORDS = new  Map<String, cqrs_IQueryHandler> ();
     // service records
+    @TestVisible
     private static final Map<String, cqrs_IService> SERVICE_RECORDS = new  Map<String, cqrs_IService> ();
+    // all commands and queries
+    @TestVisible
+    private static final List<CQRS_ContainerDomain> ALL_ACTIVE_RECORDS = new  List<CQRS_ContainerDomain>();
 
     // our instance
     private static cqrs_Resolver INSTANCE=null;
@@ -159,7 +167,6 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
             cmd = (cqrs_ICommandHandler)COMMAND_HANDLER_RECORDS.get(handler);
             if ( cmd == null ) {
                 cmd =(cqrs_ICommandHandler) this.getType(handler);
-
                 COMMAND_HANDLER_RECORDS.put(handler,cmd);
             }
         }
@@ -267,6 +274,29 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
         }
         return chain;
     }  // end of getChain
+    /**
+     * @description find the Handler Name from the Command or Query Name
+     * @param  commandOrQueryName the command or Query name
+     * @return String the Handler name
+     */
+    public virtual String findCQHandlerNameByCQName(String commandOrQueryName){
+        String result=null;
+        Boolean isValid = string.isNotBlank(commandOrQueryName);
+        // valid name
+        if ( isValid )
+        {
+            // iterate over all the commands and queries matching the
+            // concrete-type name; then return its Handler Name
+            for ( CQRS_ContainerDomain item : ALL_ACTIVE_RECORDS) {
+                if ( item.concreteType.equalsIgnoreCase(commandOrQueryName)) {
+                    result=item.handlerType;
+                    break;
+                }
+            }
+        }
+        return result;
+    } // end of findCommandOrQueryHandlerByName
+
     /////////////////////////////////////////////////////////////////
     // Protected Methods
     /////////////////////////////////////////////////////////////////
@@ -332,14 +362,18 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
             final Map<String,Map<String,String> > records = reader.theRecords;
             CQRS_ContainerDomain cqrs;
             List<CQRS_ContainerDomain> cqrsList;
+            Map<String,String> values;
 
             // loop thru values
             for ( String key:  records.keySet()) {
-                Map<String,String> values = records.get(key);
+                values = records.get(key);
                 cqrs = this.newEntry(values);
                 // first ensure the item is active
                 if ( cqrs.active ) {
-                    // get t proper list, if known
+                    // keep track of all CQs -- used to find handler
+                    // by query/command name
+                    ALL_ACTIVE_RECORDS.add(cqrs);
+                    // get the proper list, if known
                     cqrsList = this.getListByRequestType(cqrs);
                     cqrsList.add(cqrs);
                 }
@@ -365,6 +399,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
         cqrs.order = Integer.valueOf((String)values.get(ORDER_FIELD));
         cqrs.requestType = (String)values.get(REQUEST_FIELD);
         cqrs.environment = (String)values.get(ENVIRONMENT_FIELD);
+       
         return cqrs;
     }  // end of newEntry
     /**
@@ -419,10 +454,11 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
             cqrs_Resolver.cqrsMDT= new util_MetadataReader( Commands_and_Queries__mdt.class,
                                                             // how we organize the metadata
                                                             util_MetadataReader.DEVELOPER_NAME_KEY,
-                                                            // runtime environment ( we get ALL of them)
-                                                            // note, this could be done to get the current
+                                                            // runtime environment ( we could get ALL of them)
+                                                            // or, this could be done to get the current
                                                             // runtime environment (see "util_MiscHelpers.getEnvironment()" )
-                                                            util_Constants.ALL_CATEGORY);
+                                                            // util_Constants.ALL_CATEGORY
+                                                            util_MiscHelpers.getEnvironment());
         }
         return cqrs_Resolver.cqrsMDT;
     }// end of instantiateReader

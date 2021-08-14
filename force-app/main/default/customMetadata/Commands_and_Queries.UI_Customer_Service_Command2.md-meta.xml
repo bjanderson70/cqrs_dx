@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Concrete_Type__c</field>
-        <value xsi:type="xsd:string">WriteResultCommand</value>
+        <value xsi:type="xsd:string">cqrs_WriteResultCommand</value>
     </values>
     <values>
         <field>Environment__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Handler_Type__c</field>
-        <value xsi:type="xsd:string">WriteResultCommandHandler</value>
+        <value xsi:type="xsd:string">cqrs_WriteResultCommandHandler</value>
     </values>
     <values>
         <field>Order__c</field>

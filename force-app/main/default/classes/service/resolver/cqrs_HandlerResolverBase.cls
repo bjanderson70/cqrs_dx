@@ -32,7 +32,7 @@
  * @description       : Base Resolve Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -108,12 +108,16 @@ public virtual inherited sharing class cqrs_HandlerResolverBase {
     @TestVisible
     protected virtual String ensureCorrectHandlerName(String name) {
         String handlerName = name;
+
+        // get the handler name from the command/query name
         if ( string.isNotBlank(name)) {
-            if ( false ==name.endswith(EXPECTED_HANDLER_EXTENSION)  )
-            {
-                handlerName = name + EXPECTED_HANDLER_EXTENSION;
+            String found=this.getResolver().findCQHandlerNameByCQName(name);
+            // if not found, reset to the name
+            if ( found != null ) {
+                handlerName=found;
             }
         }
+
         return handlerName;
     }// end of ensureCorrectHandlerName
 

@@ -13,7 +13,10 @@ System.debug('Query(s) Result Count Found :' + result.results().size());
 System.debug('Query(s) Result Searched for: "' + ((cqrs_GetAccountByTypeQuery)queries[0]).theUserAccountType() + '"' );
 System.debug('++++++++++++++++RECORDs++++++++++++++++++++++++++++');
 // iterate over the results
-for ( cqrs_AccountTypeRecordsDTO dto: (List<cqrs_AccountTypeRecordsDTO>)result.results() ) {
-    System.debug('Query Result (' + inx++ + ') Name=' + dto.name);
+if ( result.results().size() > 0 ) {
+    for ( cqrs_AccountTypeRecordsDTO dto: (List<cqrs_AccountTypeRecordsDTO>)result.results() ) {
+        System.debug('Query Result (' + inx++ + ') Name=' +  dto.name);
+    }
+} else {
+    System.debug('Query Result None Found' );
 }
-

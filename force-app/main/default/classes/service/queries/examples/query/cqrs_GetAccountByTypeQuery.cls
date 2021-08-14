@@ -32,7 +32,7 @@
  * @description       : Get Account By Type Query
  * @author            : Bill Anderson
  * @group             : Sample-Query
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -50,8 +50,15 @@ public virtual inherited sharing class cqrs_GetAccountByTypeQuery extends cqrs_B
     // Ctors
     //////////////////////////////////////////////////////
     /**
-     * @description Get Account By Type Query 
-     * @param  theAccountType String Account Type 
+     * @description Get Account By Type Query (default ctor)
+     */
+    public cqrs_GetAccountByTypeQuery() {
+        super();
+        this.theUserAccountType(null);
+    }
+    /**
+     * @description Get Account By Type Query
+     * @param  theAccountType String Account Type
      */
     public cqrs_GetAccountByTypeQuery(String theAccountType) {
         super();
@@ -62,26 +69,26 @@ public virtual inherited sharing class cqrs_GetAccountByTypeQuery extends cqrs_B
     // Public Methods
     //////////////////////////////////////////////////////
     /**
-     * @description the User Account Type 
+     * @description the User Account Type
      * @return  Account Type
-     */ 
+     */
     public String theUserAccountType() {
         return this.accountType;
     }
- 
+
     /**
-     * @description component Type 
+     * @description component Type
      * @return  Type
-     */ 
+     */
     public virtual override Type componentType() {
         return cqrs_GetAccountByTypeQuery.class;
     }
     //////////////////////////////////////////////////////
     // Protected
     //////////////////////////////////////////////////////
-    
+
     /**
-     * @description the User Account Type 
+     * @description the User Account Type
      * @param  usrAccountType String
      */
     @TestVisible

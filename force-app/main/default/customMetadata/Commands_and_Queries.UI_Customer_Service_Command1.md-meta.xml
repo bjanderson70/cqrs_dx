@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Concrete_Type__c</field>
-        <value xsi:type="xsd:string">AuthenticationCommand</value>
+        <value xsi:type="xsd:string">cqrs_AuthenticationCommand</value>
     </values>
     <values>
         <field>Environment__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Handler_Type__c</field>
-        <value xsi:type="xsd:string">AuthenticationCommandHandler</value>
+        <value xsi:type="xsd:string">cqrs_AuthenticationCommandHandler</value>
     </values>
     <values>
         <field>Order__c</field>

@@ -32,7 +32,7 @@
  * @description       : Misc Utilities
  * @author            : Bill Anderson
  * @group             : Utility
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -61,8 +61,8 @@ public inherited sharing class util_MiscHelpers {
     // Custom Metadata pulled from SF can be NULL; thus, we pass in the value
     // and if null, set it fo the default
     ///////////////////////////////////////////////////////////////////////
-    
-     
+
+
     /**
      * @description the environment
      * @return either 'production', 'debug' (in sandbox) or 'test'
@@ -75,7 +75,6 @@ public inherited sharing class util_MiscHelpers {
         } else if (util_MiscHelpers.isSandbox() ) {
             environment = util_Constants.DEBUG_CATEGORY;
         }
-
         return environment;
     }     // end of getEnvironment
     /**

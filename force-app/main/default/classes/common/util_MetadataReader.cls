@@ -33,7 +33,7 @@
  *                      is the name and what field to index by
  * @author            : Bill Anderson
  * @group             : Utility
- * @last modified on  : 07-31-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -118,7 +118,7 @@ public virtual inherited sharing class util_MetadataReader {
      */
     @SuppressWarnings('sf:AvoidMethodsBeforeInitializers')
     public util_MetadataReader(Type metaDataType, String indexBy, String environment) {
-        //  this.onGuardCustomMetadataName(metaDataType);
+        this.onGuardCustomMetadataName(metaDataType);
 
         this.theName = metaDataType.getName();
         this.cmdtSObjectType = Schema.getGlobalDescribe().get(this.theName);
@@ -282,7 +282,6 @@ public virtual inherited sharing class util_MetadataReader {
             String queryFields = string.join(new List<String>(this.theFields.keyset()),',');
             List<SObject> records=null;
 
-            // accc_IApexCRUDProvider provider = new accc_ApexCRUDProvider(accc_ApexDMLOptions.ExecutionMode.SYSTEM_MODE);
             String query = this.makeQuery(queryFields,fieldExists);
             records = Database.query(query);
 
@@ -294,7 +293,7 @@ public virtual inherited sharing class util_MetadataReader {
             }
 
         } catch (Exception excp) {
-            system.debug(excp);
+            this.log(excp.getStackTraceString());
         }
         return count;
     }// end of readFieldsImpl
@@ -346,7 +345,7 @@ public virtual inherited sharing class util_MetadataReader {
             this.theRecords.put(idResult.toLowerCase().trim(), recordMap );
 
         }
-    
+
         return count;
     }// end of processRecords
     /**
@@ -390,6 +389,19 @@ public virtual inherited sharing class util_MetadataReader {
         return query;
     }// end of makeQuery
 
+    /**
+     * @description This is contrived -- you should have your own Cross Cutting Concern Logger
+     *      here we did this for syntactic sugar ( for the children)
+     * @param  message String
+     */
+    @TestVisible
+    protected virtual Boolean log(String message){
+        Boolean add = String.isNotBlank (message);
+        if ( add ) {
+            system.debug('+++' +message);
+        }
+        return add;
+    } // end of log
     /////////////////////////////////////////////////////////////////////////////
     // Private Methods
     /////////////////////////////////////////////////////////////////////////////
