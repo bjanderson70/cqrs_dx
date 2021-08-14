@@ -32,7 +32,7 @@
  * @description       : Test cqrs_Resolver Functionality
  * @author            : Bill Anderson
  * @group             : Test
- * @last modified on  : 08-04-2021
+ * @last modified on  : 08-14-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -119,7 +119,8 @@ private class cqrs_ResolverTest {
         List<cqrs_ICommand> commands = resolver.getCommandChain (COMMAND_SERVICE);
         // assert
         system.assertNotEquals(null, commands);
-        system.assertNotEquals(true, commands.size()>0);
+        // test environment SHOULD have values
+        system.assertEquals(true, commands.size()>0);
         // act
         commands = resolver.getCommandChain (BAD_HANDLER);
         // assert
@@ -136,4 +137,29 @@ private class cqrs_ResolverTest {
         // assert
         system.assertEquals(true, queries.isEmpty());
     }
+
+    @isTest
+    static void findCQHandlerNameByCQNameTest() {
+        // arrange
+        cqrs_Resolver resolver=  cqrs_Resolver.newInstance();
+
+        // act
+        String result = resolver.findCQHandlerNameByCQName ('');
+        // assert
+        system.assertEquals(null, result);
+        // act
+        result = resolver.findCQHandlerNameByCQName (null);
+        // assert
+        system.assertEquals(null, result);
+
+        // iterate over our active records
+        for ( cqrs_Resolver.CQRS_ContainerDomain item : cqrs_Resolver.ALL_ACTIVE_RECORDS )
+        {
+            // act
+            result = resolver.findCQHandlerNameByCQName (item.concreteType);
+            // assert
+            system.assertEquals(item.handlerType, result);
+        }
+    }// end of findCQHandlerNameByCQNameTest
+
 } // end of cqrs_IResolverTest
