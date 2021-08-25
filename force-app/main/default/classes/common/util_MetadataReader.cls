@@ -33,7 +33,7 @@
  *                      is the name and what field to index by
  * @author            : Bill Anderson
  * @group             : Utility
- * @last modified on  : 08-14-2021
+ * @last modified on  : 08-25-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -68,7 +68,7 @@ public virtual inherited sharing class util_MetadataReader {
     * Private Section
     ***************************************************/
     // my limit number of records; normally 50K
-    private static final String MAX_LIMIT = ' LIMIT 20000';
+    private static final String MAX_LIMIT = ' LIMIT 2000';
     /*
      * Default key index
      */
@@ -270,7 +270,7 @@ public virtual inherited sharing class util_MetadataReader {
      * @return  Integer number of read fields
      */
     @TestVisible
-    @SuppressWarnings('sf:SOQLInjection')
+    @SuppressWarnings('sf:SOQLInjection,PMD.ApexSOQLInjection')
     protected virtual Integer readFieldsImpl() {
         Integer count=0;
 
