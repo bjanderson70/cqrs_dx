@@ -20,6 +20,7 @@ node {
     // -------------------------------------------------------------------------
 
     stage('checkout source') {
+        System.out.println('Checking out source')
         checkout scm
     }
 
@@ -39,6 +40,7 @@ node {
 
             stage('Authorize DevHub') {
                 rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
+                System.out.println('Authorize - DevHub:' + rc);
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
@@ -51,6 +53,7 @@ node {
 
             stage('Create Test Scratch Org') {
                 rc = command "${toolbelt}/sfdx force:org:create --targetdevhubusername HubOrg --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1"
+                System.out.println('Create Test Scratch Org :' + rc)
                 if (rc != 0) {
                     error 'Salesforce test scratch org creation failed.'
                 }
@@ -63,6 +66,7 @@ node {
 
             stage('Display Test Scratch Org') {
                 rc = command "${toolbelt}/sfdx force:org:display --targetusername ciorg"
+                System.out.println('Display Test Scratch Org :' + rc)
                 if (rc != 0) {
                     error 'Salesforce test scratch org display failed.'
                 }
@@ -75,6 +79,7 @@ node {
 
             stage('Push To Test Scratch Org') {
                 rc = command "${toolbelt}/sfdx force:source:push --targetusername ciorg"
+                 System.out.println('Push to Test Scratch Org :' + rc)
                 if (rc != 0) {
                     error 'Salesforce push to test scratch org failed.'
                 }
