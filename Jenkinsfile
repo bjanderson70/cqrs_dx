@@ -34,8 +34,6 @@ node {
     
     withEnv(["HOME=${env.WORKSPACE}"]) {
         
-        echo "Authorize - DevHub:" + SERVER_KEY_CREDENTALS_ID
-
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
              echo " ++ Server-File: ${server_key_file}" 
@@ -44,8 +42,13 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Authorize DevHub') {
-                rc = command "${toolbelt}sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile \"${server_key_file}\" --setdefaultdevhubusername --setalias HubOrg"
+              //  rc = command "${toolbelt}sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
                 
+                if (isUnix()) {
+                    rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                }else{
+                    rc = bat returnStatus: true, script: "\"${toolbelt}sfdx\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                }
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
