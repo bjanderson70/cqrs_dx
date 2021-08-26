@@ -22,7 +22,7 @@ node {
 
     stage('checkout source') {
         echo "Checking out source"
-         echo "Tool "${toolbelt}"
+        echo "SFDX Tool - ${toolbelt}"
         checkout scm
     }
 
