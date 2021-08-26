@@ -22,7 +22,7 @@ node {
 
     stage('checkout source') {
         echo "Checking out source"
-         echo "Authorize - DevHub:" + env.MY_SECRET
+         echo "Tool "${toolbelt}"
         checkout scm
     }
 
