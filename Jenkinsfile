@@ -22,6 +22,7 @@ node {
 
     stage('checkout source') {
         echo "Checking out source"
+         echo "Authorize - DevHub:" + SERVER_KEY_CREDENTALS_ID
         checkout scm
     }
 
@@ -34,7 +35,7 @@ node {
     withEnv(["HOME=${env.WORKSPACE}"]) {
         
         echo "Authorize - DevHub:" + SERVER_KEY_CREDENTALS_ID
-        
+
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
             // -------------------------------------------------------------------------
