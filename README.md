@@ -1,6 +1,6 @@
 # Salesforce CQRS
 
-Command-Query Responsibility Segregation, or CSRQ, provides the ability to separate Query from Commands responsibilities using SOLID Principles. Queries retrieve information from a sink (data store) for the user. A command performs a task, such as update a sink (data store). Commands mutate state, while a Query does not. Technically, a Command does not return a value; however, the example which follows will return status. Each provides a single responsibility (Liskov principle in soLid).
+Command-Query Responsibility Segregation, or CSRQ, provides the ability to separate Query from Commands responsibilities using SOLID Principles. Queries retrieve information from a sink (data store) for the user. A command performs a task, such as update a sink (data store). Commands mutate state, while a Query does not. Technically, a Command does not return a value; however, the example which follows will return status. Each provides a single responsibility (Single Responsibility principle in Solid).
 
 Documentation can be found in the _docs_ directory and [CQRS](https://github.com/bjanderson70/cqrs_dx/blob/master/docs/CQRS-Design.pdf)
 
@@ -35,7 +35,7 @@ System.debug('Command(s) Result:' + result);
 ### Query
 
 Like the sample command there is a sample query. This example is found in the source tree
-(./scripts/apex/exampleQuery.apex). Please this too is a raw form and can be used in a service
+(./scripts/apex/exampleQuery.apex). Please note, this too is a raw form and can be used in a service
 supporting specific functionality (i.e., Customer Management, Lead Management, etc.)
 
 ````
@@ -64,7 +64,7 @@ for ( cqrs_AccountTypeRecordsDTO dto: (List<cqrs_AccountTypeRecordsDTO>)result.r
 ````
 
 Following the same flow as a command, the above is a collection of (one) query, where we
-create a Query Dispatcher, passes in the query collection, and the dispatcher finds the
+create a Query Dispatcher, pass in the query collection, and the dispatcher finds the
 appropriate handlers and executes.
 
 ### Service ( which wraps commands and queries)
@@ -100,15 +100,15 @@ for ( cqrs_AccountTypeRecordsDTO dto: service.findAccountRecordsByAccountType(ac
   System.debug('Service Result (' + inx++ + ') Name=' + dto.name);
 }
 ````
-The above Customer Service, cqrs_CustomerService, uses a provider to return the service by
-name1. The service has similar attributes of a Command or Query (name, guid, user-context).
-Our service method, findAccountRecordsByAccountType(accountType) passes in an accounttype,
-value of enterprise, and gets back a collection (Data Transfer Object) of Account Type
+The above Customer Service, **cqrs_CustomerService**, uses a provider to return the service by
+name. The service holds similar attributes of a Command or Query (name, guid, user-context).
+Our service method, __findAccountRecordsByAccountType(accountType)__ passes in an account type,
+value of __enterprise__, and gets back a collection (Data Transfer Object) of Account Type
 Records.
 
 ## How to install
 
-Download the directory. Assuming you have :
+Download the directory. Assumes you have :
 
 * SFDX installed 
 * Dev Hub, 
