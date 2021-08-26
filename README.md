@@ -1,6 +1,6 @@
 # Salesforce CQRS
 
-Command-Query Responsibility Segregation, or CSRQ, provides the ability to separate Query from Commands responsibilities using SOLID Principles. Queries retrieve information from a sink (data store) for the user. A command performs a task, such as update a sink (data store). Commands mutate state, while a Query does not. Technically, a Command does not return a value; however, the example which follows will return status. Each provides a single responsibility (Liskov principle in soLid).
+Command-Query Responsibility Segregation, or CSRQ, provides the ability to separate Query from Commands responsibilities using SOLID Principles. Queries retrieve information from a sink (data store) for the user. A command performs a task, such as update a sink (data store). Commands mutate state, while a Query does not. Technically, a Command does not return a value; however, the example which follows will return status. Each provides a single responsibility (Single Responsibility principle in Solid).
 
 Documentation can be found in the _docs_ directory and [CQRS](https://github.com/bjanderson70/cqrs_dx/blob/master/docs/CQRS-Design.pdf)
 
