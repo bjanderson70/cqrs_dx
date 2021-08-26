@@ -8,7 +8,7 @@ node {
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
     def SERVER_KEY_CREDENTALS_ID=env.JWT_CRED_ID_DH
-    //env.MY_SECRET
+ 
     def TEST_LEVEL='RunLocalTests'
     def PACKAGE_NAME
     def PACKAGE_VERSION
@@ -23,7 +23,6 @@ node {
 
     stage('checkout source') {
         echo "Checking out source"
-        echo "SFDX Tool - ${toolbelt}"
         checkout scm
     }
 
@@ -37,7 +36,6 @@ node {
         
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
-             echo " ++ Server-File: ${server_key_file}" 
             // -------------------------------------------------------------------------
             // Authorize the Dev Hub org with JWT key and give it an alias.
             // -------------------------------------------------------------------------
@@ -70,7 +68,7 @@ node {
 
             stage('Display Test Scratch Org') {
                 rc = command "${toolbelt}sfdx force:org:display --targetusername ciorg"
-                echo "Display Test Scratch Org :"
+                
                 if (rc != 0) {
                     error 'Salesforce test scratch org display failed.'
                 }
@@ -83,7 +81,7 @@ node {
 
             stage('Push To Test Scratch Org') {
                 rc = command "${toolbelt}sfdx force:source:push --targetusername ciorg"
-                 echo "Push to Test Scratch Org :"
+                
                 if (rc != 0) {
                     error 'Salesforce push to test scratch org failed.'
                 }
@@ -117,7 +115,7 @@ node {
             // -------------------------------------------------------------------------
             // Create package version.
             // -------------------------------------------------------------------------
-
+            /*
             stage('Create Package Version') {
                 if (isUnix()) {
                     output = sh returnStdout: true, script: "${toolbelt}sfdx force:package:version:create --package ${PACKAGE_NAME} --installationkeybypass --wait 10 --json --targetdevhubusername HubOrg"
@@ -198,6 +196,7 @@ node {
                     error 'Salesforce package install scratch org deletion failed.'
                 }
             }
+            */
         }
     }
 }
