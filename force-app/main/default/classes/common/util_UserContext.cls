@@ -32,25 +32,26 @@
  * @description       : User Context
  * @author            : Bill Anderson
  * @group             : Utilities
- * @last modified on  : 08-04-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-
+@SuppressWarnings('sf:TooManyMethods')
 public virtual inherited sharing class util_UserContext implements util_IUserContext {
 
     //////////////////////////////////////////////////
     // Data Member
     //////////////////////////////////////////////////
     // Simple Indexes
-    static final String FIRSTNAME = 'firstname',
-                         LASTNAME = 'lasttname',
-                         PROFILE_ID = 'profileid',
-                         ORD_ID = 'orgId',
-                         ROLE_ID = 'roleId',
-                         USER_ID = 'userId';
+    @TestVisible
+    static final String FIRSTNAME_ID = 'firstname',
+                        LASTNAME_ID = 'lastname',
+                        PROFILE_ID = 'profileid',
+                        ORD_ID = 'orgId',
+                        ROLE_ID = 'roleId',
+                        USER_ID = 'userId';
     // holds user context
     Map<String,String> content = new Map<String,String>();
 
@@ -61,12 +62,18 @@ public virtual inherited sharing class util_UserContext implements util_IUserCon
      * @description util_IUserContext default ctor
      */
     public util_UserContext() {
-        content.put(LASTNAME,UserInfo.getLastName());
+        // roles may not be set
+        final String setRoleId = UserInfo.getUserRoleId(),
+                     roleId = String.isBlank(setRoleId) ? '' : setRoleId;
+
+
         content.put(ORD_ID,UserInfo.getOrganizationId());
         content.put(PROFILE_ID,UserInfo.getProfileId());
         content.put(USER_ID,UserInfo.getUserId());
-        content.put(ROLE_ID,UserInfo.getUserRoleId());
-        content.put(FIRSTNAME,UserInfo.getFirstName());
+        content.put(LASTNAME_ID,UserInfo.getLastName());
+        content.put(FIRSTNAME_ID,UserInfo.getFirstName());
+
+        content.put(ROLE_ID,roleId);
     }
     //////////////////////////////////////////////////
     // Public Methods
@@ -79,10 +86,10 @@ public virtual inherited sharing class util_UserContext implements util_IUserCon
         return this.content.get(ROLE_ID);
     }
     public String firstname() {
-        return this.content.get(FIRSTNAME);
+        return this.content.get(FIRSTNAME_ID);
     }
     public String lastname() {
-        return this.content.get(LASTNAME);
+        return this.content.get(LASTNAME_ID);
     }
     public String userId() {
         return this.content.get(USER_ID);
@@ -103,11 +110,11 @@ public virtual inherited sharing class util_UserContext implements util_IUserCon
     }
     @TestVisible
     protected void  firstname(String value) {
-        this.content.put(FIRSTNAME,value);
+        this.content.put(FIRSTNAME_ID,value);
     }
     @TestVisible
     protected void  lastname(String value) {
-        this.content.put(LASTNAME,value);
+        this.content.put(LASTNAME_ID,value);
     }
     @TestVisible
     protected void  userId(String value) {

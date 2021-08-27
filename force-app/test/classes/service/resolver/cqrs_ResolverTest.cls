@@ -32,7 +32,7 @@
  * @description       : Test cqrs_Resolver Functionality
  * @author            : Bill Anderson
  * @group             : Test
- * @last modified on  : 08-14-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -72,7 +72,7 @@ private class cqrs_ResolverTest {
         List<cqrs_Resolver.CQRS_ContainerDomain> chain=resolver.cqrsListByLabel (COMMAND_SERVICE,
                                                                                  cqrs_Resolver.CommandRequestTypeEnum.COMMAND);
         // assert
-        system.assertEquals( true,chain.size() > 0 );
+        system.assertEquals( true,!chain.isEmpty() );
         // assert (expect sorted order)
         for (cqrs_Resolver.CQRS_ContainerDomain item : chain) {
             // assert
@@ -120,7 +120,7 @@ private class cqrs_ResolverTest {
         // assert
         system.assertNotEquals(null, commands);
         // test environment SHOULD have values
-        system.assertEquals(true, commands.size()>0);
+        system.assertEquals(true, !commands.isEmpty());
         // act
         commands = resolver.getCommandChain (BAD_HANDLER);
         // assert

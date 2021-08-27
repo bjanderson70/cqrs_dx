@@ -32,7 +32,7 @@
  * @description       : Test Command Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -44,6 +44,7 @@ private class cqrs_CommandHandlerTest {
     /////////////////////////////////////////////////////////////
     // Mock
     /////////////////////////////////////////////////////////////
+    @SuppressWarnings('sf:ConfusingTernary')
     public class cqrs_CommandHandlerMock extends cqrs_CommandHandler {
 
         public override cqrs_ICommandResult handle(cqrs_ICommand command) {

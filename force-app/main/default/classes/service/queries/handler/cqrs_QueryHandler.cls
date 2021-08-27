@@ -32,7 +32,7 @@
  * @description       : Query Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -76,7 +76,7 @@ public abstract inherited sharing class cqrs_QueryHandler implements cqrs_IQuery
         try {
             result = this.handle(query);
         } catch (Exception excp) {
-            // result = new cqrs_QueryResult(excp);
+            result = new cqrs_QueryResult(excp);
         }
         return result;
     }

@@ -32,7 +32,7 @@
  * @description       : Service Provider
  * @author            : Bill Anderson
  * @group             : Service
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -45,6 +45,14 @@ public virtual inherited sharing class cqrs_ServiceProvider extends cqrs_Handler
     /////////////////////////////////////////////////////////
     // singleton
     private static cqrs_ServiceProvider INSTANCE=null;
+
+    /////////////////////////////////////////////////////////
+    // Ctor
+    /////////////////////////////////////////////////////////
+    // ensure singleton 
+    @TestVisible
+    private cqrs_ServiceProvider() {
+    }
     /////////////////////////////////////////////////////////
     // Public Methods
     /////////////////////////////////////////////////////////

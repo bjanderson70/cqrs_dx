@@ -32,7 +32,7 @@
  * @description       : Test Query Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -42,10 +42,15 @@
 private class cqrs_QueryHandlerTest {
 
     /////////////////////////////////////////////////////////////
+    // Data Members
+    /////////////////////////////////////////////////////////////
+    static final String ENTERPISE_ID = 'Enterprise';
+    /////////////////////////////////////////////////////////////
     // Mock
     /////////////////////////////////////////////////////////////
+    @SuppressWarnings('sf:ConfusingTernary')
     public class cqrs_QueryHandlerMock extends cqrs_QueryHandler {
-      
+
         public override cqrs_IQueryResult handle(cqrs_IQuery query) {
             return query != null ? new cqrs_QueryResult() : new cqrs_QueryResult(new NullPointerException());
         }
@@ -66,7 +71,7 @@ private class cqrs_QueryHandlerTest {
     static void retrieveTest(){
         // arrange
         cqrs_QueryHandler handler = new cqrs_QueryHandlerMock();
-        cqrs_IQuery query= new cqrs_GetAccountByTypeQuery('Enterprise');
+        cqrs_IQuery query= new cqrs_GetAccountByTypeQuery(ENTERPISE_ID);
         // act  / assert
         system.assertNotEquals(null, handler.retrieve(query));
 
@@ -75,7 +80,7 @@ private class cqrs_QueryHandlerTest {
     static void handleTest(){
         // arrange
         cqrs_QueryHandler handler = new cqrs_QueryHandlerMock();
-        cqrs_IQuery query= new cqrs_GetAccountByTypeQuery('Enterprise');
+        cqrs_IQuery query= new cqrs_GetAccountByTypeQuery(ENTERPISE_ID);
         // act  / assert
         system.assertEquals(true, handler.handle(query).success());
         // act

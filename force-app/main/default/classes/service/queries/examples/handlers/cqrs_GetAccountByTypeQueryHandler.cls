@@ -32,7 +32,7 @@
  * @description       : Get Account By Type Query Handler
  * @author            : Bill Anderson
  * @group             : Sample
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -93,8 +93,14 @@ public virtual inherited sharing class cqrs_GetAccountByTypeQueryHandler extends
      */
     @TestVisible
     protected List<cqrs_AccountTypeRecordsDTO> getFromAccountRepository(String acctTypeValue) {
-        // note, not putting in limit -- could if you wanted.SELECT  FROM Account
-        List<Account> accts=[select id,name,type,industry from account where type=: acctTypeValue ];
+        List<Account> accts=null;
+        try {
+            // note, not putting in limit -- could if you wanted.SELECT  FROM Account
+            accts=[select id,name,type,industry from account where type=: acctTypeValue WITH SECURITY_ENFORCED ];
+        } catch(Exception excp) {
+            accts = new   List<Account>();
+            super.log(excp.getStackTraceString());
+        }
         // convert to proper type
         return this.findMapEngineAndConvert(accts);
     }
@@ -110,9 +116,9 @@ public virtual inherited sharing class cqrs_GetAccountByTypeQueryHandler extends
 
         for ( Account repoAccount: fromValue) {
             result.add( new cqrs_AccountTypeRecordsDTO(repoAccount.id
-                                                  ,repoAccount.name
-                                                  ,repoAccount.type
-                                                  ,repoAccount.industry));
+                                                       ,repoAccount.name
+                                                       ,repoAccount.type
+                                                       ,repoAccount.industry));
         }
         return result;
     }// end of findMapEngineAndConvert

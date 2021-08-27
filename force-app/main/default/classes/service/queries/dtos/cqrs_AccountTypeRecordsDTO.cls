@@ -32,7 +32,7 @@
  * @description       : Data Transfer Object
  * @author            : Bill Anderson
  * @group             : DTO
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -48,11 +48,12 @@ public inherited sharing class cqrs_AccountTypeRecordsDTO {
     /*
      * Common ctor to make life easier for this sample
      */
-    public cqrs_AccountTypeRecordsDTO(String Id,String theName, String theType, String theIndustry){
+    public cqrs_AccountTypeRecordsDTO(String theId,String theName, String theType, String theIndustry){
         // NO Checks -- just for sample
         this.Name = theName;
         this.Type = theType;
         this.Industry = theIndustry;
+        this.Id = theId;
     }
 
 }// end of cqrs_AccountTypeRecordsDTO

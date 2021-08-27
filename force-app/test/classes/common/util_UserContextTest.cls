@@ -32,7 +32,7 @@
  * @description       : Test UserContext Functionality
  * @author            : Bill Anderson
  * @group             : Test
- * @last modified on  : 08-04-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -41,15 +41,7 @@
 
 @isTest(OnInstall=true)
 private class util_UserContextTest {
-    /////////////////////////////////////////////////////
-    // Data Members
-    /////////////////////////////////////////////////////
-    static final String FIRSTNAME = 'firstname',
-                        LASTNAME = 'lasttname',
-                        PROFILE_ID = 'profileid',
-                        ORD_ID = 'orgId',
-                        ROLE_ID = 'roleId',
-                        USER_ID = 'userId';
+
     /////////////////////////////////////////////////////
     // Unit Tests
     /////////////////////////////////////////////////////
@@ -58,7 +50,7 @@ private class util_UserContextTest {
         // arrange
         final Boolean expected = true;
         // act
-        util_UserContext context = new util_UserContext();
+        final util_UserContext context = new util_UserContext();
         // assert
         system.assertEquals(expected, context.profileId() != null);
         system.assertEquals(expected, context.roleId() != null);
@@ -72,23 +64,22 @@ private class util_UserContextTest {
     @isTest
     static void setterTest() {
         // arrange
-        final Boolean expected = true;
-        util_UserContext context = new util_UserContext();
-        // act 
-        context.profileId(PROFILE_ID);
-        context.roleId(ROLE_ID);
-        context.firstname(FIRSTNAME);
-        context.lastname(LASTNAME);
-        context.userId(USER_ID);
-        context.orgId(ORD_ID);
+        final util_UserContext context = new util_UserContext();
+        // act
+        context.profileId(util_UserContext.PROFILE_ID);
+        context.roleId(util_UserContext.ROLE_ID);
+        context.firstname(util_UserContext.FIRSTNAME_ID);
+        context.lastname(util_UserContext.LASTNAME_ID);
+        context.userId(util_UserContext.USER_ID);
+        context.orgId(util_UserContext.ORD_ID);
 
         // assert
-        system.assertEquals(PROFILE_ID, context.profileId() );
-        system.assertEquals(ROLE_ID, context.roleId() );
-        system.assertEquals(FIRSTNAME, context.firstname() );
-        system.assertEquals(LASTNAME, context.lastname() );
-        system.assertEquals(USER_ID, context.userId() );
-        system.assertEquals(ORD_ID, context.orgId() );
+        system.assertEquals(util_UserContext.PROFILE_ID, context.profileId() );
+        system.assertEquals(util_UserContext.ROLE_ID, context.roleId() );
+        system.assertEquals(util_UserContext.FIRSTNAME_ID, context.firstname() );
+        system.assertEquals(util_UserContext.LASTNAME_ID, context.lastname() );
+        system.assertEquals(util_UserContext.USER_ID, context.userId() );
+        system.assertEquals(util_UserContext.ORD_ID, context.orgId() );
 
     }
 } // end of util_UserContextTest

@@ -32,7 +32,7 @@
  * @description       : Resolver for Command Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-14-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -49,10 +49,9 @@ public inherited sharing class cqrs_CommandHandlerResolver extends cqrs_HandlerR
      * @return  cqrs_ICommandHandler
      */
     public cqrs_ICommandHandler resolve(cqrs_ICommand command) {
-        cqrs_ICommandHandler result=(cqrs_ICommandHandler) super.resolve(command.name(),
-                                                                         cqrs_Resolver.CommandRequestTypeEnum.COMMAND);
+        return (cqrs_ICommandHandler) super.resolve(command.name(),
+                                                    cqrs_Resolver.CommandRequestTypeEnum.COMMAND);
 
-        return result;
     } // end of resolve
 
 }// end of cqrs_CommandHandlerResolver

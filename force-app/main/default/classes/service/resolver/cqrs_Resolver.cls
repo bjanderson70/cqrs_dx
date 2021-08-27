@@ -33,12 +33,13 @@
  *                      This needs a lot of improvements!!
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-14-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   08-01-2021   Bill Anderson   Initial Version
  **/
+@SuppressWarnings('sf:TooManyMethods')
 public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
 
     /////////////////////////////////////////////////////////////////
@@ -46,7 +47,9 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
     /////////////////////////////////////////////////////////////////
     /*
      * Data Representation ( we need to sort on "Order")
+     * - This is a DTO - fields are available to caller/callee
      */
+    @SuppressWarnings('sf:AvoidPublicFields')
     public class CQRS_ContainerDomain implements Comparable {
         public String label;
         public String handlerType;
@@ -305,6 +308,7 @@ public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
      * @param  concreteType concrete type name
      * @return Type
      */
+    @SuppressWarnings('sf:ConfusingTernary')
     @TestVisible
     protected virtual Object getType(String concreteType) {
         Type value=null;

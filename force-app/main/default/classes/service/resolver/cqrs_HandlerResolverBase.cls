@@ -32,7 +32,7 @@
  * @description       : Base Resolve Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 08-14-2021
+ * @last modified on  : 08-27-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -73,6 +73,7 @@ public virtual inherited sharing class cqrs_HandlerResolverBase {
      * @param  cqType CommandRequestTypeEnum (Command || Query)
      * @return Object cqrs_ICommandHandler or cqrs_IQueryHandler
      */
+    @SuppressWarnings('sf:ConfusingTernary')
     @TestVisible
     protected virtual Object resolve(String name,
                                      cqrs_Resolver.CommandRequestTypeEnum cqType) {
