@@ -54,7 +54,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Step 2. Create Test Scratch Org') {
-                rc = command "${toolbelt}sfdx force:org:create --targetdevhubusername HubOrg --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1"
+                rc = command "${toolbelt}sfdx force:org:create --targetdevhubusername HubOrg --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --wait 400 --durationdays 1"
                 echo "Create Test Scratch Org :"
                 if (rc != 0) {
                     error 'Salesforce test scratch org creation failed.'
@@ -92,7 +92,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Step 5. Run Tests In Test Scratch Org') {
-                rc = command "${toolbelt}sfdx force:apex:test:run --targetusername ciorg --wait 10 --resultformat tap --codecoverage --testlevel ${TEST_LEVEL}"
+                rc = command "${toolbelt}sfdx force:apex:test:run --targetusername ciorg --wait 400 --resultformat tap --codecoverage --testlevel ${TEST_LEVEL}"
                 if (rc != 0) {
                     error 'Salesforce unit test run in test scratch org failed.'
                 }
