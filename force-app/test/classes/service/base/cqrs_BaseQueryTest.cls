@@ -49,6 +49,8 @@ private class cqrs_BaseQueryTest {
         // arrange
         cqrs_BaseQuery query = new cqrs_BaseQuery();
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, query);
         cqrs_BaseQueryTest.baseAssertions(query);
     }
     @isTest
@@ -56,6 +58,8 @@ private class cqrs_BaseQueryTest {
         // arrange
         cqrs_BaseQuery query = new cqrs_BaseQuery( util_UserContextSettings.newInstance().getUserContext());
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, query);
         cqrs_BaseQueryTest.baseAssertions(query);
     }
     @isTest
@@ -64,6 +68,8 @@ private class cqrs_BaseQueryTest {
         cqrs_BaseQuery query = new cqrs_BaseQuery( util_UserContextSettings.newInstance().getUserContext(),
                                                    util_Constants.TEST_CATEGORY);
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, query);
         cqrs_BaseQueryTest.baseAssertions(query);
     }
     ///////////////////////////////////////////////

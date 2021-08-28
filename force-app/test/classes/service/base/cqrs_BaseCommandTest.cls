@@ -48,6 +48,8 @@ private class cqrs_BaseCommandTest {
         // arrange
         cqrs_BaseCommand command = new cqrs_BaseCommand();
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, command);
         cqrs_BaseCommandTest.baseAssertions(command);
     }
     @isTest
@@ -55,6 +57,8 @@ private class cqrs_BaseCommandTest {
         // arrange
         cqrs_BaseCommand command = new cqrs_BaseCommand( util_UserContextSettings.newInstance().getUserContext());
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, command);
         cqrs_BaseCommandTest.baseAssertions(command);
     }
     @isTest
@@ -63,6 +67,8 @@ private class cqrs_BaseCommandTest {
         cqrs_BaseCommand command = new cqrs_BaseCommand( util_UserContextSettings.newInstance().getUserContext(),
                                                          util_Constants.TEST_CATEGORY);
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, command);
         cqrs_BaseCommandTest.baseAssertions(command);
     }
     ///////////////////////////////////////////////

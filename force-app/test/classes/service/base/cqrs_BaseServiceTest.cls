@@ -54,6 +54,8 @@ private class cqrs_BaseServiceTest {
         // arrange
         cqrs_BaseService service = new cqrs_BaseService();
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, service);
         cqrs_BaseServiceTest.baseAssertions(service);
     }
     @isTest
@@ -61,6 +63,8 @@ private class cqrs_BaseServiceTest {
         // arrange
         cqrs_BaseService service = new cqrs_BaseService( util_UserContextSettings.newInstance().getUserContext());
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, service);
         cqrs_BaseServiceTest.baseAssertions(service);
     }
     @isTest
@@ -69,6 +73,8 @@ private class cqrs_BaseServiceTest {
         cqrs_BaseService service = new cqrs_BaseService( util_UserContextSettings.newInstance().getUserContext(),
                                                          util_Constants.TEST_CATEGORY);
         // assert
+        // some scanner are not smart enough to follow the methods
+        system.assertNotEquals(null, service);
         cqrs_BaseServiceTest.baseAssertions(service);
     }
     ///////////////////////////////////////////////
