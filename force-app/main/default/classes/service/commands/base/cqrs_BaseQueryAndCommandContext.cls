@@ -32,7 +32,7 @@
  * @description       : Base Class for Query and Command Context
  * @author            : Bill Anderson
  * @group             : Core
- * @last modified on  : 08-07-2021
+ * @last modified on  : 08-28-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -157,7 +157,8 @@ public abstract inherited sharing class cqrs_BaseQueryAndCommandContext implemen
      */
     @TestVisible
     protected void environment(String env) {
-        this.theEnvironment=util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug(env);
+        String environ = string.isBlank(env) ? util_MiscHelpers.getEnvironment() : util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug(env);
+        this.theEnvironment=environ;
     }
 
 

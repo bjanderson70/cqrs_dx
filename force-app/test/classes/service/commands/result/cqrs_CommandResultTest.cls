@@ -29,7 +29,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Test util_MiscHelper Functionality
+ * @description       : Test cqrs_CommandResult Functionality
  * @author            : Bill Anderson
  * @group             : Test
  * @last modified on  : 08-28-2021
@@ -40,29 +40,45 @@
  **/
 @SuppressWarnings('sf:UseLocaleWithCaseConversions')
 @isTest(OnInstall=true)
-private class util_MiscHelpersTest {
+private class cqrs_CommandResultTest {
 
-    ///////////////////////////////////////////////////////////////
-    // UNIT TESTS
-    ///////////////////////////////////////////////////////////////
-
-
-    @isTest
-    static void miscMethodTest() {
-        // act /assert
-
-        system.assertEquals(util_Constants.TEST_CATEGORY,util_MiscHelpers.getEnvironment());
-        system.assertEquals(util_Constants.DEBUG_CATEGORY,util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug('hello'));
-        system.assertNotEquals(null,util_MiscHelpers.newGuid());
-        system.assertNotEquals(null, new util_MiscHelpers());
-
-    } // end of miscMethodTest
+///////////////////////////////////////////////////////////////
+// UNIT TESTS
+///////////////////////////////////////////////////////////////
 
 
     @isTest
-    static void  isSandboxTest() {
-        // arrange/act/assert
-        System.assertEquals(util_Constants.isSandboxBool, util_MiscHelpers.isSandbox());
+    static void defaultCtorTest() {
+        // arrange/act
+        cqrs_CommandResult result = new cqrs_CommandResult();
+        // assert
+        system.assertEquals(false, result.hasException());
+        system.assertEquals(true, result.success());
+
     }
+    @isTest
+    static void defaultMethodsTest() {
+        // arrange/act
+        cqrs_CommandResult result = new cqrs_CommandResult(true);
+        // assert
+        system.assertEquals(false, result.hasException());
+        system.assertEquals(true, result.success());
 
-}// end of util_MiscHelpersTest
+        // act
+        result.success(false);
+        // assert
+        system.assertEquals(false, result.success());
+
+        // act
+        result.theException(new NullPointerException());
+        // assert
+        system.assertEquals(true, result.hasException());
+        system.assertNotEquals(null, result.theException());
+
+        // act
+        result = new cqrs_CommandResult(new NullPointerException());
+        // assert
+        system.assertEquals(true, result.hasException());
+        system.assertEquals(false, result.success());
+    }
+}

@@ -29,7 +29,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Test util_MiscHelper Functionality
+ * @description       : Test cqrs_BaseService Functionality
  * @author            : Bill Anderson
  * @group             : Test
  * @last modified on  : 08-28-2021
@@ -38,31 +38,50 @@
  * Ver   Date         Author          Modification
  * 1.0   01-09-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('sf:UseLocaleWithCaseConversions')
+
 @isTest(OnInstall=true)
-private class util_MiscHelpersTest {
+private class cqrs_BaseServiceTest {
+    //////////////////////////////////////////////////////
+    // Test Data
+    //////////////////////////////////////////////////////
+    static final String LOG_VALUE = 'test';
 
-    ///////////////////////////////////////////////////////////////
-    // UNIT TESTS
-    ///////////////////////////////////////////////////////////////
-
-
+    /////////////////////////////////////////////////////////
+    // Unit Tests
+    /////////////////////////////////////////////////////////
     @isTest
-    static void miscMethodTest() {
-        // act /assert
-
-        system.assertEquals(util_Constants.TEST_CATEGORY,util_MiscHelpers.getEnvironment());
-        system.assertEquals(util_Constants.DEBUG_CATEGORY,util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug('hello'));
-        system.assertNotEquals(null,util_MiscHelpers.newGuid());
-        system.assertNotEquals(null, new util_MiscHelpers());
-
-    } // end of miscMethodTest
-
-
-    @isTest
-    static void  isSandboxTest() {
-        // arrange/act/assert
-        System.assertEquals(util_Constants.isSandboxBool, util_MiscHelpers.isSandbox());
+    static void ctorTest() {
+        // arrange
+        cqrs_BaseService service = new cqrs_BaseService();
+        // assert
+        cqrs_BaseServiceTest.baseAssertions(service);
     }
-
-}// end of util_MiscHelpersTest
+    @isTest
+    static void ctorWithUserContextTest() {
+        // arrange
+        cqrs_BaseService service = new cqrs_BaseService( util_UserContextSettings.newInstance().getUserContext());
+        // assert
+        cqrs_BaseServiceTest.baseAssertions(service);
+    }
+    @isTest
+    static void ctorWithUserContextAndEnvironmentTest() {
+        // arrange
+        cqrs_BaseService service = new cqrs_BaseService( util_UserContextSettings.newInstance().getUserContext(),
+                                                         util_Constants.TEST_CATEGORY);
+        // assert
+        cqrs_BaseServiceTest.baseAssertions(service);
+    }
+    ///////////////////////////////////////////////
+    // Helper
+    ///////////////////////////////////////////////
+    // base assertion
+    static void baseAssertions(cqrs_BaseService service) {
+        // assert
+        system.assertNotEquals(null, service.guid());
+        system.assertEquals(util_Constants.TEST_CATEGORY, service.environment());
+        system.assertNotEquals(null, service.context().orgId());
+        system.assertEquals (cqrs_BaseService.class.getName(), service.name());
+        system.assertEquals(true, service.log(LOG_VALUE));
+        system.assertEquals(false, service.log(null));
+    }
+}// end of cqrs_BaseServiceTest

@@ -29,7 +29,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Test util_MiscHelper Functionality
+ * @description       : Test cqrs_BaseQuery Functionality
  * @author            : Bill Anderson
  * @group             : Test
  * @last modified on  : 08-28-2021
@@ -38,31 +38,43 @@
  * Ver   Date         Author          Modification
  * 1.0   01-09-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('sf:UseLocaleWithCaseConversions')
 @isTest(OnInstall=true)
-private class util_MiscHelpersTest {
+private class cqrs_BaseQueryTest {
 
-    ///////////////////////////////////////////////////////////////
-    // UNIT TESTS
-    ///////////////////////////////////////////////////////////////
-
-
+    /////////////////////////////////////////////////////////
+    // Unit Tests
+    /////////////////////////////////////////////////////////
     @isTest
-    static void miscMethodTest() {
-        // act /assert
-
-        system.assertEquals(util_Constants.TEST_CATEGORY,util_MiscHelpers.getEnvironment());
-        system.assertEquals(util_Constants.DEBUG_CATEGORY,util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug('hello'));
-        system.assertNotEquals(null,util_MiscHelpers.newGuid());
-        system.assertNotEquals(null, new util_MiscHelpers());
-
-    } // end of miscMethodTest
-
-
-    @isTest
-    static void  isSandboxTest() {
-        // arrange/act/assert
-        System.assertEquals(util_Constants.isSandboxBool, util_MiscHelpers.isSandbox());
+    static void ctorTest() {
+        // arrange
+        cqrs_BaseQuery query = new cqrs_BaseQuery();
+        // assert
+        cqrs_BaseQueryTest.baseAssertions(query);
     }
-
-}// end of util_MiscHelpersTest
+    @isTest
+    static void ctorWithUserContextTest() {
+        // arrange
+        cqrs_BaseQuery query = new cqrs_BaseQuery( util_UserContextSettings.newInstance().getUserContext());
+        // assert
+        cqrs_BaseQueryTest.baseAssertions(query);
+    }
+    @isTest
+    static void ctorWithUserContextAndEnvironmentTest() {
+        // arrange
+        cqrs_BaseQuery query = new cqrs_BaseQuery( util_UserContextSettings.newInstance().getUserContext(),
+                                                   util_Constants.TEST_CATEGORY);
+        // assert
+        cqrs_BaseQueryTest.baseAssertions(query);
+    }
+    ///////////////////////////////////////////////
+    // Helper
+    ///////////////////////////////////////////////
+    // base assertion
+    static void baseAssertions(cqrs_BaseQuery query) {
+        // assert
+        system.assertNotEquals(null, query.guid());
+        system.assertEquals(util_Constants.TEST_CATEGORY, query.environment());
+        system.assertNotEquals(null, query.context().orgId());
+        system.assertEquals (cqrs_BaseQuery.class.getName(), query.name());
+    }
+}// end of cqrs_BaseQueryTest

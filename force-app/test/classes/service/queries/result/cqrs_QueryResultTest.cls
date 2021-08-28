@@ -29,7 +29,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Test util_MiscHelper Functionality
+ * @description       : Test cqrs_QueryResult Functionality
  * @author            : Bill Anderson
  * @group             : Test
  * @last modified on  : 08-28-2021
@@ -40,29 +40,45 @@
  **/
 @SuppressWarnings('sf:UseLocaleWithCaseConversions')
 @isTest(OnInstall=true)
-private class util_MiscHelpersTest {
-
+private class cqrs_QueryResultTest {
+    
     ///////////////////////////////////////////////////////////////
     // UNIT TESTS
     ///////////////////////////////////////////////////////////////
 
 
     @isTest
-    static void miscMethodTest() {
-        // act /assert
+    static void defaultCtorTest() {
+        // arrange/act
+        cqrs_QueryResult result = new cqrs_QueryResult();
+        // assert
+        system.assertEquals(false, result.hasException());
+        system.assertEquals(0, result.results().size());
+        system.assertEquals(true, result.success());
 
-        system.assertEquals(util_Constants.TEST_CATEGORY,util_MiscHelpers.getEnvironment());
-        system.assertEquals(util_Constants.DEBUG_CATEGORY,util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug('hello'));
-        system.assertNotEquals(null,util_MiscHelpers.newGuid());
-        system.assertNotEquals(null, new util_MiscHelpers());
-
-    } // end of miscMethodTest
-
-
-    @isTest
-    static void  isSandboxTest() {
-        // arrange/act/assert
-        System.assertEquals(util_Constants.isSandboxBool, util_MiscHelpers.isSandbox());
     }
+    @isTest
+    static void defaultMethodsTest() {
+        // arrange/act
+        List<Object> data = new List<Object> {
+            '1',
+            '2'
+        };
+        cqrs_QueryResult result = new cqrs_QueryResult();
+        // assert
+        system.assertEquals(false, result.hasException());
+        // act
+        result.results(data);
+        system.assertEquals(data.size(), result.results().size());
+        // act
+        result.success(false);
+        // assert
+        system.assertEquals(false, result.success());
 
-}// end of util_MiscHelpersTest
+        // act
+        result.theException(new NullPointerException());
+        // assert
+        system.assertEquals(true, result.hasException());
+        system.assertNotEquals(null, result.theException());
+    }
+}// end of cqrs_QueryResultTest

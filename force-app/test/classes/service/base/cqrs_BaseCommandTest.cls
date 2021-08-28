@@ -29,7 +29,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Test util_MiscHelper Functionality
+ * @description       : Test cqrs_BaseCommand Functionality
  * @author            : Bill Anderson
  * @group             : Test
  * @last modified on  : 08-28-2021
@@ -38,31 +38,42 @@
  * Ver   Date         Author          Modification
  * 1.0   01-09-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('sf:UseLocaleWithCaseConversions')
 @isTest(OnInstall=true)
-private class util_MiscHelpersTest {
-
-    ///////////////////////////////////////////////////////////////
-    // UNIT TESTS
-    ///////////////////////////////////////////////////////////////
-
-
+private class cqrs_BaseCommandTest {
+    /////////////////////////////////////////////////////////
+    // Unit Tests
+    /////////////////////////////////////////////////////////
     @isTest
-    static void miscMethodTest() {
-        // act /assert
-
-        system.assertEquals(util_Constants.TEST_CATEGORY,util_MiscHelpers.getEnvironment());
-        system.assertEquals(util_Constants.DEBUG_CATEGORY,util_MiscHelpers.ensureEnviromentIsCorrectOtherwiseDebug('hello'));
-        system.assertNotEquals(null,util_MiscHelpers.newGuid());
-        system.assertNotEquals(null, new util_MiscHelpers());
-
-    } // end of miscMethodTest
-
-
-    @isTest
-    static void  isSandboxTest() {
-        // arrange/act/assert
-        System.assertEquals(util_Constants.isSandboxBool, util_MiscHelpers.isSandbox());
+    static void ctorTest() {
+        // arrange
+        cqrs_BaseCommand command = new cqrs_BaseCommand();
+        // assert
+        cqrs_BaseCommandTest.baseAssertions(command);
     }
-
-}// end of util_MiscHelpersTest
+    @isTest
+    static void ctorWithUserContextTest() {
+        // arrange
+        cqrs_BaseCommand command = new cqrs_BaseCommand( util_UserContextSettings.newInstance().getUserContext());
+        // assert
+        cqrs_BaseCommandTest.baseAssertions(command);
+    }
+    @isTest
+    static void ctorWithUserContextAndEnvironmentTest() {
+        // arrange
+        cqrs_BaseCommand command = new cqrs_BaseCommand( util_UserContextSettings.newInstance().getUserContext(),
+                                                         util_Constants.TEST_CATEGORY);
+        // assert
+        cqrs_BaseCommandTest.baseAssertions(command);
+    }
+    ///////////////////////////////////////////////
+    // Helper
+    ///////////////////////////////////////////////
+    // base assertion
+    static void baseAssertions(cqrs_BaseCommand command) {
+        // assert
+        system.assertNotEquals(null, command.guid());
+        system.assertEquals(util_Constants.TEST_CATEGORY, command.environment());
+        system.assertNotEquals(null, command.context().orgId());
+        system.assertEquals (cqrs_BaseCommand.class.getName(), command.name());
+    }
+}// end of cqrs_BaseCommandTest

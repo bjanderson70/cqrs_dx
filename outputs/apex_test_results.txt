@@ -1,0 +1,8 @@
+{
+"summary": {
+        "totalLines": 639,
+        "coveredLines": 550,
+        "testRunCoverage": "86%",
+        "orgWideCoverage": "80%"
+      }
+}

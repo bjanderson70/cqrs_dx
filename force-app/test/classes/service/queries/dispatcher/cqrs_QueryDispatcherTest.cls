@@ -32,7 +32,7 @@
  * @description       : Query Dispatcher Test
  * @author            : Bill Anderson
  * @group             : Test
- * @last modified on  : 08-03-2021
+ * @last modified on  : 08-28-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -78,6 +78,11 @@ private class cqrs_QueryDispatcherTest {
         // assert
         system.assertEquals(true, result.success());
         system.assertEquals(false, result.hasException());
+        // act
+        result = dispatcher.dispatch((cqrs_IQuery)null);
+        // assert
+        system.assertEquals(false, result.success());
+        system.assertEquals(true, result.hasException());
 
     }
 
