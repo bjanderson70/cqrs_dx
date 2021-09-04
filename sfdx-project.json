@@ -1,6 +1,8 @@
 {
   "packageDirectories": [
     {
+      "package": "cqrs",
+      "versionNumber": "0.0.0.0",
       "path": "force-app",
       "default": true
     }
