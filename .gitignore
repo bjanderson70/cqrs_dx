@@ -7,6 +7,12 @@
 .vscode/
 .localdevserver/
 .vim-force.com/
+#sfpowerscripts
+.testresults/
+.sfpowerscripts/
+artifacts
+sfpowerscripts
+buildResult.json
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json

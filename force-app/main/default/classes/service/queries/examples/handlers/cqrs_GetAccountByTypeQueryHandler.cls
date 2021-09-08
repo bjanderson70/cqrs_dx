@@ -32,8 +32,8 @@
  * @description       : Get Account By Type Query Handler
  * @author            : Bill Anderson
  * @group             : Sample
- * @last modified on  : 08-27-2021
- * @last modified by  : Bill Anderson
+ * @last modified on  : 09-08-2021
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
