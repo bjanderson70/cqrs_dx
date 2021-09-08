@@ -29,9 +29,9 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : cqrs_AccountTypeRecordsDTO  Test
+ * @description       : Test Authenticate Command Handler Test
  * @author            : Bill Anderson
- * @group             : CQRS
+ * @group             : Test
  * @last modified on  : 09-08-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
@@ -39,29 +39,26 @@
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
 @isTest(OnInstall=true)
-private class cqrs_AccountTypeRecordsDTOTest {
-    /////////////////////////////////////////////////////////////
+private class  cqrs_AuthenticationCommandHandlerTest {
+   
+     /////////////////////////////////////////////////////////////
     // Data Members
     /////////////////////////////////////////////////////////////
-    static final String DTO_ID = 'Id';
-    static final String DTO_NAME = 'Name';
-    static final String DTO_TYPE = 'Type';
-    static final String DTO_IND = 'Industry';
+ 
     /////////////////////////////////////////////////////////////
     // Unit Tests
     /////////////////////////////////////////////////////////////
     @isTest
-    static void ctorTest() {
-        // arrange / act
-        cqrs_AccountTypeRecordsDTO dto = new cqrs_AccountTypeRecordsDTO(DTO_ID,
-                                                                        DTO_NAME,
-                                                                        DTO_TYPE,
-                                                                        DTO_IND);
-        // assertions
-        system.assertEquals(DTO_ID, dto.Id);
-        system.assertEquals(DTO_NAME, dto.Name); 
-        system.assertEquals(DTO_TYPE, dto.Type);   
-        system.assertEquals(DTO_IND, dto.Industry);     
+    static void handleMethodTest() {
+        // arrange
+        cqrs_AuthenticationCommandHandler handler = new cqrs_AuthenticationCommandHandler();
+        cqrs_ICommand command = null;
+        // act 
+        cqrs_ICommandResult result = handler.handle(command);
+        // assert
+        system.assertNotEquals(null, result);
+        system.assertEquals(true, result.hasException());
+        
+
     }
-   
-}// end of cqrs_AccountTypeRecordsDTOTest
+}// end of cqrs_AuthenticationCommandHandlerTest
