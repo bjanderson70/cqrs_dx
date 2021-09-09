@@ -1,13 +1,43 @@
 {
   "packageDirectories": [
     {
+      "path": "src-env-specific-pre",
+      "package": "src-env-specific-pre",
+      "versionNumber": "1.0.0.0",
+      "ignoreOnStage": [
+          "prepare",
+          "validate",
+          "quickbuild",
+          "build"
+      ]
+   },
+   {
+      "path": "src-env-specific-alias-pre",
+      "package": "src-env-specific-alias-pre",
+      "versionNumber": "1.0.0.0",
+      "aliasfy": true,
+      "ignoreOnStage": [
+          "prepare",
+          "validate",
+          "quickbuild",
+          "build"
+      ]
+   },
+   {
+      "path": "src/core-crm",
       "package": "cqrs",
-      "versionNumber": "0.0.0.0",
-      "path": "force-app",
-      "default": true
-    }
+      "versionName": "Version 0.9.0",
+      "versionNumber": "0.9.0.0",
+      "default": true,
+      "skipCoverageValidation":true,
+      "skipTesting":true
+   }
   ],
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "51.0"
+  "sourceApiVersion": "52.0",
+  "packageAliases": {
+  },
+  "plugins": {
+  }
 }

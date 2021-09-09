@@ -1,0 +1,17 @@
+{
+"pool": {
+"expiry": 1,
+"config_file_path": "config/project-scratch-def.json",
+"script_file_path": "scripts/so_script.sh",
+"tag": "ci"
+},
+"poolUsers": [
+{
+"max_allocation": 2,
+"min_allocation": 2,
+"username": "billanderson@apple.devops",
+"expiry": 1,
+"priority": 1
+}
+]
+}
