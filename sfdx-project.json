@@ -29,8 +29,8 @@
       "versionName": "Version 0.9.0",
       "versionNumber": "0.9.0.0",
       "default": true,
-      "skipCoverageValidation":true,
-      "skipTesting":true
+      "skipCoverageValidation":false,
+      "skipTesting":false
    }
   ],
   "namespace": "",
