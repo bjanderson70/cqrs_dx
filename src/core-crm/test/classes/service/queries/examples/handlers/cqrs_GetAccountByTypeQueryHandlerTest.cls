@@ -32,12 +32,13 @@
  * @description       : cqrs_GetAccountByTypeQuery Handler Test
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 09-08-2021
+ * @last modified on  : 09-09-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
+@TestVisible
 @isTest(OnInstall=true)
 private class cqrs_GetAccountByTypeQueryHandlerTest {
     /////////////////////////////////////////////////////////////
@@ -109,7 +110,8 @@ private class cqrs_GetAccountByTypeQueryHandlerTest {
     /*
      * Add Account Data
      */
-    static void  addAccountData(){
+    @TestVisible
+    static integer  addAccountData(){
         // arrange
         List<Account> values= new List<Account> {
             new Account(Name='Ohana, Inc.',Type='Enterprise', Industry='Technology'),
@@ -117,5 +119,6 @@ private class cqrs_GetAccountByTypeQueryHandlerTest {
             new Account(Name='Other, Inc.',Type='Small Business', Industry='Technology')
         };
         insert values;
+        return values.size();
     }// end of addAccountData
 }

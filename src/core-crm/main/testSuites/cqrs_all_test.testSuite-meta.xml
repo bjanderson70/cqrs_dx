@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <testClassName>cqrs_AccountTypeRecordsDTOTest</testClassName>
+    <testClassName>cqrs_AuthenticationCommandHandlerTest</testClassName>
+    <testClassName>cqrs_AuthenticationCommandTest</testClassName>
+    <testClassName>cqrs_BaseCommandTest</testClassName>
+    <testClassName>cqrs_BaseQueryTest</testClassName>
+    <testClassName>cqrs_BaseServiceTest</testClassName>
+    <testClassName>cqrs_CommandDispatcherTest</testClassName>
+    <testClassName>cqrs_CommandHandlerTest</testClassName>
+    <testClassName>cqrs_CommandResultTest</testClassName>
+    <testClassName>cqrs_CustomerServiceTest</testClassName>
+    <testClassName>cqrs_GetAccountByTypeQueryHandlerTest</testClassName>
+    <testClassName>cqrs_HandlerResolverBaseTest</testClassName>
+    <testClassName>cqrs_QueryDispatcherTest</testClassName>
+    <testClassName>cqrs_QueryHandlerTest</testClassName>
+    <testClassName>cqrs_QueryResultTest</testClassName>
+    <testClassName>cqrs_ResolverTest</testClassName>
+    <testClassName>cqrs_ResultTest</testClassName>
+    <testClassName>cqrs_ServiceProviderTest</testClassName>
+    <testClassName>cqrs_WriteResultCommandHandlerTest</testClassName>
+    <testClassName>util_MetadataReaderTest</testClassName>
+    <testClassName>util_MiscHelpersTest</testClassName>
+    <testClassName>util_StringsTest</testClassName>
+    <testClassName>util_UserContextTest</testClassName>
+</ApexTestSuite>
