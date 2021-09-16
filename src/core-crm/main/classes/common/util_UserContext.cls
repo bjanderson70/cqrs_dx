@@ -32,7 +32,7 @@
  * @description       : User Context
  * @author            : Bill Anderson
  * @group             : Utilities
- * @last modified on  : 08-27-2021
+ * @last modified on  : 09-15-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -65,14 +65,15 @@ public virtual inherited sharing class util_UserContext implements util_IUserCon
         // roles may not be set
         final String setRoleId = UserInfo.getUserRoleId(),
                      roleId = String.isBlank(setRoleId) ? '' : setRoleId;
-
-
+        String fname = UserInfo.getFirstName();
         content.put(ORD_ID,UserInfo.getOrganizationId());
         content.put(PROFILE_ID,UserInfo.getProfileId());
         content.put(USER_ID,UserInfo.getUserId());
         content.put(LASTNAME_ID,UserInfo.getLastName());
-        content.put(FIRSTNAME_ID,UserInfo.getFirstName());
-
+        if ( string.isBlank(fname)){
+            fname='';
+        }
+        content.put(FIRSTNAME_ID,fname);
         content.put(ROLE_ID,roleId);
     }
     //////////////////////////////////////////////////

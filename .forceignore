@@ -1,3 +1,9 @@
 **/jsconfig.json
 
 **/.eslintrc.json
+
+package.xml
+src-env-specific-alias-post/**
+src-env-specific-alias-pre/**
+sfpowerscripts/**
+artifacts/**

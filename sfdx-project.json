@@ -30,7 +30,8 @@
       "versionNumber": "0.9.0.0",
       "default": true,
       "skipCoverageValidation":false,
-      "skipTesting":false
+      "skipTesting":false,
+      "isOptimizedDeployment": false
    }
   ],
   "namespace": "",

@@ -4,6 +4,7 @@
 
 # Salesforce cache
 .sfdx/
+.env
 .vscode/
 .localdevserver/
 .vim-force.com/
@@ -12,6 +13,7 @@
 .sfpowerscripts/
 artifacts
 sfpowerscripts
+outputs
 buildResult.json
 
 # LWC VSCode autocomplete
