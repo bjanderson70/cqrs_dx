@@ -32,7 +32,7 @@
  * @description       : Test util_MetadataReader Functionality
  * @author            : Bill Anderson
  * @group             : Test
- * @last modified on  : 08-03-2021
+ * @last modified on  : 09-17-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -64,6 +64,42 @@ private class util_MetadataReaderTest {
         system.assertNotEquals(0, reader.hashCode);
         system.assertEquals (count,reader.recordCount);
         system.assertEquals (count,reader.theRecords.size());
+        system.assertEquals (true,reader.hasRead);
+    }
+
+    @isTest
+    static void logTest() {
+        // arrange
+        util_MetadataReader reader=new util_MetadataReader(Commands_and_Queries__mdt.class);
+        // act
+        Boolean added = reader.log('test');
+        // assert
+        system.assertEquals (true,added);
+    }
+    @isTest
+    static void onGuardCustomMetadataNameTest() {
+        // arrange
+        util_MetadataReader reader=new util_MetadataReader(Commands_and_Queries__mdt.class);
+        Boolean threwException = false;
+        // act
+        try { 
+            reader.onGuardCustomMetadataName(null);
+        } catch (Exception excp){
+            threwException=true;
+        }
+    
+        // assert
+        system.assertEquals (true,threwException);
+    }
+
+    @isTest
+    static void showContentsTest() {
+        // arrange
+        util_MetadataReader reader=new util_MetadataReader(Commands_and_Queries__mdt.class);
+        util_MetadataReader.SHOW_CONTENTS=true;
+        // act
+        reader.showContents();
+        // assert
         system.assertEquals (true,reader.hasRead);
     }
 
