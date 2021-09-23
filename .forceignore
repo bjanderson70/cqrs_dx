@@ -1,3 +1,4 @@
+# .forceignore v2
 **/jsconfig.json
 
 **/.eslintrc.json
@@ -7,3 +8,4 @@ src-env-specific-alias-post/**
 src-env-specific-alias-pre/**
 sfpowerscripts/**
 artifacts/**
+**/*.md
