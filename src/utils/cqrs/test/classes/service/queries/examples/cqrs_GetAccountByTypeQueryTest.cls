@@ -29,17 +29,43 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE .
  *
- * @description       : Query Result
+ * @description       : cqrs_GetAccountByTypeQuery  Test
  * @author            : Bill Anderson
- * @group             : Interface
- * @last modified on  : 10-11-2021
+ * @group             : CQRS
+ * @last modified on  : 10-05-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
- * 1.0   07-30-2021   Bill Anderson   Initial Version
+ * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
-public interface cqrs_IQueryResult extends cqrs_IResult {
-    // any type of value
-    List<Object> results();
+@TestVisible
+@isTest(OnInstall=true)
+private class cqrs_GetAccountByTypeQueryTest {
+    /////////////////////////////////////////////////////////////
+    // Data Members
+    /////////////////////////////////////////////////////////////
+    static final String ENTERPISE_ID = 'Enterprise';
+
+    /////////////////////////////////////////////////////////////
+    // Unit Tests
+    /////////////////////////////////////////////////////////////
+
+    @isTest
+    static void ctorAndMethodWithoutValueTest() {
+        // arrange/act
+        cqrs_GetAccountByTypeQuery query = new cqrs_GetAccountByTypeQuery();
+        // assert
+        system.assertNotEquals(null, query);
+        system.assertEquals (null, query.theUserAccountType());
+        system.assertEquals (cqrs_GetAccountByTypeQuery.class, query.componentType());
+    }
+    @isTest
+    static void ctorAndMethodWithValueTest() {
+        // arrange/act
+        cqrs_GetAccountByTypeQuery query = new cqrs_GetAccountByTypeQuery(ENTERPISE_ID);
+        // assert
+        system.assertNotEquals(null, query);
+        system.assertEquals (ENTERPISE_ID, query.theUserAccountType());
+        system.assertEquals (cqrs_GetAccountByTypeQuery.class, query.componentType());
+    }
 }

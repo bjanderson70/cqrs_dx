@@ -32,13 +32,13 @@
  * @description       : Authenticate Command
  * @author            : Bill Anderson
  * @group             : Sample-Commands
- * @last modified on  : 09-20-2021
+ * @last modified on  : 10-11-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions')
+@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
 public virtual inherited sharing class cqrs_AuthenticationCommand extends cqrs_BaseCommand {
 
     //////////////////////////////////////////////////////

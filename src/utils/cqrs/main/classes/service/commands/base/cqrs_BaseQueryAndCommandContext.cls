@@ -32,13 +32,13 @@
  * @description       : Base Class for Query and Command Context
  * @author            : Bill Anderson
  * @group             : Core
- * @last modified on  : 09-20-2021
+ * @last modified on  : 10-11-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   08-02-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions')
+@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
 public abstract inherited sharing class cqrs_BaseQueryAndCommandContext implements cqrs_IEntityIdentifier {
 
     ////////////////////////////////////////////////////////////////////

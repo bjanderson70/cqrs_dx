@@ -32,13 +32,13 @@
  * @description       : Constants
  * @author            : Bill Anderson
  * @group             : Utilities
- * @last modified on  : 09-20-2021
+ * @last modified on  : 10-11-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   12-15-2020   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sf:AvoidUsingHardCodedIP,sf:UseLocaleWithCaseConversions')
+@SuppressWarnings('PMD.ClassNamingConventions,apex:S101,sf:AvoidUsingHardCodedIP,sf:UseLocaleWithCaseConversions')
 public inherited sharing class util_Constants {
 
     ////////////////////////////////////////////////////////////////////

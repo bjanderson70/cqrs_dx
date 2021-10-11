@@ -32,13 +32,13 @@
  * @description       : Data Transfer Object
  * @author            : Bill Anderson
  * @group             : DTO
- * @last modified on  : 09-20-2021
+ * @last modified on  : 10-11-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   08-02-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions')
+@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
 public inherited sharing class cqrs_AccountTypeRecordsDTO {
 
     // public fields

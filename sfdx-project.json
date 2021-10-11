@@ -24,16 +24,6 @@
       ]
    },
    {
-      "path": "src/core-crm",
-      "package": "core",
-      "versionName": "Version 0.2.0.0",
-      "versionNumber": "0.2.0.0",
-      "default": false,
-      "skipCoverageValidation":false,
-      "skipTesting":false,
-      "isOptimizedDeployment": false
-   },
-   {
       "path": "src/utils/cqrs",
       "package": "cqrs",
       "versionName": "Version 0.9.0",
