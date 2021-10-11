@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101')
 public virtual inherited sharing class cqrs_BaseService extends cqrs_BaseQueryAndCommandContext implements cqrs_IService {
 
 

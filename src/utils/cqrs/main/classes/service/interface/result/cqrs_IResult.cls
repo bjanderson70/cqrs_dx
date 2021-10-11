@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   07-30-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101')
 public interface cqrs_IResult {
     // success query/command
     Boolean success();

@@ -39,7 +39,7 @@
  * Ver   Date         Author          Modification
  * 1.0   08-01-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('sf:TooManyMethods,PMD.CyclomaticComplexity,PMD.ClassNamingConventions,apex:S101')
+@SuppressWarnings('sf:TooManyMethods,PMD.CyclomaticComplexity,PMD.ClassNamingConventions,sf.apex:S101')
 public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
 
     /////////////////////////////////////////////////////////////////

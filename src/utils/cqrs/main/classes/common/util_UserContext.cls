@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,apex:S101,sf:TooManyMethods')
+@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101,sf:TooManyMethods')
 public virtual inherited sharing class util_UserContext implements util_IUserContext {
 
     //////////////////////////////////////////////////

@@ -39,7 +39,7 @@
  * Ver   Date         Author          Modification
  * 1.0   02-15-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,apex:S101,sf:UseLocaleWithCaseConversions')
+@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101,sf:UseLocaleWithCaseConversions')
 public virtual inherited sharing class util_MetadataReader {
 
 
