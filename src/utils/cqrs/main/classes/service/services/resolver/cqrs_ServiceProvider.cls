@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   08-03-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,sf.S101')
 public virtual inherited sharing class cqrs_ServiceProvider extends cqrs_HandlerResolverBase implements cqrs_IServiceProvider {
 
     /////////////////////////////////////////////////////////
