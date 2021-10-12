@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   12-15-2020   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,squid:apex:S101,sf:AvoidUsingHardCodedIP,sf:UseLocaleWithCaseConversions')
+@SuppressWarnings('PMD.ClassNamingConventions,squid:S101,sf:AvoidUsingHardCodedIP,sf:UseLocaleWithCaseConversions')
 public inherited sharing class util_Constants {
 
     ////////////////////////////////////////////////////////////////////

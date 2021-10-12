@@ -32,13 +32,13 @@
  * @description       : Demarcation for a Query
  * @author            : Bill Anderson
  * @group             : Interface
- * @last modified on  : 10-11-2021
+ * @last modified on  : 10-12-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-30-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,squid:S101')
 public interface cqrs_IQuery extends cqrs_IEntityIdentifier {
 
 }

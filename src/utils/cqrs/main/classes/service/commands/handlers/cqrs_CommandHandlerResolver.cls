@@ -32,13 +32,13 @@
  * @description       : Resolver for Command Handler
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 10-11-2021
+ * @last modified on  : 10-12-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   07-31-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,squid:S101')
 public inherited sharing class cqrs_CommandHandlerResolver extends cqrs_HandlerResolverBase implements cqrs_ICommandHandlerResolver {
     //////////////////////////////////////////////////////////////////////////
     // Public Methods

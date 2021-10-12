@@ -33,13 +33,13 @@
  *                      This needs a lot of improvements!! REFACTOR !!!
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 10-11-2021
+ * @last modified on  : 10-12-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   08-01-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('sf:TooManyMethods,PMD.CyclomaticComplexity,PMD.ClassNamingConventions,sf.apex:S101')
+@SuppressWarnings('sf:TooManyMethods,PMD.CyclomaticComplexity,PMD.ClassNamingConventions,squid:S101')
 public virtual inherited sharing class cqrs_Resolver implements cqrs_IResolver {
 
     /////////////////////////////////////////////////////////////////

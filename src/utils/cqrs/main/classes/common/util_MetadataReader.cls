@@ -33,13 +33,13 @@
  *                      is the name and what field to index by
  * @author            : Bill Anderson
  * @group             : Utility
- * @last modified on  : 10-11-2021
+ * @last modified on  : 10-12-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
  * 1.0   02-15-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sf.apex:S101,sf:UseLocaleWithCaseConversions')
+@SuppressWarnings('PMD.ClassNamingConventions,squid:S101,sf:UseLocaleWithCaseConversions')
 public virtual inherited sharing class util_MetadataReader {
 
 

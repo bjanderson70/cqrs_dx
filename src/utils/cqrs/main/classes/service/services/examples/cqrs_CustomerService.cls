@@ -38,7 +38,7 @@
  * Ver   Date         Author          Modification
  * 1.0   08-03-2021   Bill Anderson   Initial Version
  **/
-@SuppressWarnings('PMD.ClassNamingConventions,sqid.apex:S101')
+@SuppressWarnings('PMD.ClassNamingConventions,squid:S101')
 public virtual inherited sharing class cqrs_CustomerService extends cqrs_BaseService {
 
     /////////////////////////////////////////////////////////
