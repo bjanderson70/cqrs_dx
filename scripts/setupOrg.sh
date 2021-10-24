@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 orgName=
-
+location=$(pwd)
 #######################################################
 # soure common functions
 #
@@ -9,9 +9,14 @@ orgName=
 function sourceFunctions() {
     if [[ -f "funcs.sh" ]]; then
         source funcs.sh
+        location=..;
     else
         if [[ -f "./scripts/funcs.sh" ]]; then
             source ./scripts/funcs.sh
+            location=.;
+        elif  [[ -f "../../scripts/funcs.sh" ]]; then
+            source ../../scripts/funcs.sh
+            location=../..;
         fi
     fi
 }
@@ -36,7 +41,14 @@ function setPermAndInstall() {
     echo "${green}${bold}"
     # add account records
     echo "   Installing Accounts & Contacts for review scenario"
-    ./scripts/genRecords.sh -u "$orgName" -i
+    ${location}/scripts/genRecords.sh -u "$orgName" -i
+}
+
+function installCustomMetadata() {
+    echo "${green}${bold}"
+    # add account records
+    echo "   Installing Custom Metadata..."
+    sfdx force:mdapi:deploy  -d ${location}/metadata/unpackaged -w 30
 }
 
 # source functions
@@ -65,4 +77,5 @@ then
 fi
 
 setPermAndInstall;
+installCustomMetadata;
 complete;

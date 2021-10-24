@@ -3,5 +3,5 @@
     <description>Commands and Queries</description>
     <label>Command and Query</label>
     <pluralLabel>Commands and Queries</pluralLabel>
-    <visibility>Protected</visibility>
+    <visibility>Public</visibility>
 </CustomObject>

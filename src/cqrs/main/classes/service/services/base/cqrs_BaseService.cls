@@ -32,7 +32,7 @@
  * @description       : Base Service
  * @author            : Bill Anderson
  * @group             : CQRS
- * @last modified on  : 10-12-2021
+ * @last modified on  : 10-23-2021
  * @last modified by  : Bill Anderson
  * Modifications Log
  * Ver   Date         Author          Modification
@@ -40,8 +40,6 @@
  **/
 @SuppressWarnings('PMD.ClassNamingConventions,squid:S101')
 public virtual inherited sharing class cqrs_BaseService extends cqrs_BaseQueryAndCommandContext implements cqrs_IService {
-
-
     ////////////////////////////////////////////////////////////////////
     // Ctors (Protected)
     ////////////////////////////////////////////////////////////////////
@@ -102,6 +100,4 @@ public virtual inherited sharing class cqrs_BaseService extends cqrs_BaseQueryAn
         }
         return add;
     } // end of log
-
-
 }// end of cqrs_BaseService
