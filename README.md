@@ -22,7 +22,7 @@ collection, and the dispatcher finds the appropriate handlers and executes.
 
 ```` 
 // list of commands to run (default behavior is to exits on bad status on any command)
-List<cqrs_ICommand> commands = new List<cqrs_ICommand> {
+final List<cqrs_ICommand> commands = new List<cqrs_ICommand> {
     new cqrs_AuthenticationCommand('test-uid','test-password'),
     new cqrs_WriteResultCommand('test-id')
 };
@@ -40,13 +40,13 @@ supporting specific functionality (i.e., Customer Management, Lead Management, e
 
 ````
 // set up / arrange
-List<cqrs_IQuery> queries = new List<cqrs_IQuery> {
+final List<cqrs_IQuery> queries = new List<cqrs_IQuery> {
    // get account by type ()
    new cqrs_GetAccountByTypeQuery('Enterprise')
 };
 Integer inx=1;
 // act -- dispatcher looks up a handler and executes
-cqrs_IQueryResult result= new cqrs_QueryDispatcher().dispatch(queries);
+final cqrs_IQueryResult result= new cqrs_QueryDispatcher().dispatch(queries);
 //
 // results
 //
@@ -81,9 +81,9 @@ Integer inx=1;
 // The Service Name -- Note, it looks for the service based on name and running environment
 // If run from anonymous window ( that is considered "Debug" mode
 //
-String serviceName='Customer Service';
+final String serviceName='Customer Service';
 // our account type parameter
-String accountType = 'enterprise';
+final String accountType = 'enterprise';
 //
 // get the service by name -- resolver looks for service by name and runtime environment ( this can be overloaded)
 cqrs_CustomerService service = (cqrs_CustomerService) cqrs_ServiceProvider.newInstance().getService( serviceName);
